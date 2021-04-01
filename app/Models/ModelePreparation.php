@@ -15,6 +15,6 @@ class ModelePreparation extends Model
         
        ];
     public function conditionnementLogistiques(){
-        return $this->hasMany(\app\Models\ConditionnementLogistique::class,'idConditionnementLogistique');  
+        return $this->belongsTo(ConditionnementLogistique::class,'idConditionnementLogistique');  
     }
 }

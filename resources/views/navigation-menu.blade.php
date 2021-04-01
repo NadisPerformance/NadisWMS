@@ -77,6 +77,11 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{route('modelePreparation.index')}}" :active="request()->routeIs('modelePreparation.index')">
+                        {{ __('Modele de préparation') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{route('test.index')}}" :active="request()->routeIs('test.index')">
                         {{ __('Test') }}
                     </x-jet-nav-link>
