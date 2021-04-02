@@ -58,5 +58,8 @@ class Article extends Model
     public function societes(){
         return $this->belongsTo(\app\Models\Societe::class,'idSociete');  
     }
+    public function modeleSNs(){
+        return $this->belongsTo(ModeleSN::class);  
+    }
 
 }

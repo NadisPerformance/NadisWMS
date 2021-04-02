@@ -9,6 +9,7 @@ use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\FamilleQuarantaineController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\ModelePreparationController;
+use App\Http\Controllers\ModeleSNController;
 use App\Http\Controllers\ModeleStockageController;
 use App\Http\Controllers\PrixController;
 use App\Http\Controllers\SocieteController;
@@ -48,4 +49,5 @@ Route::resource('/test',TestController::class);
 Route::resource('/conditionnementLogistique',ConditionnementLogistiqueController::class);
 Route::resource('/codeBarre',CodeBarreController::class);
 Route::resource('/modelePreparation',ModelePreparationController::class);
+Route::resource('/modeleSN',ModeleSNController::class);
 
