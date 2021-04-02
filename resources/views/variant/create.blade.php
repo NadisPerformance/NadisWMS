@@ -18,8 +18,49 @@
 
                 <form action="{{ route('variant.store') }}" method="POST">
                     @csrf
-                    <x-jet-input placeholder="Nom" id="name" class="block mt-1 w-full" type="text"
-                                         :value="old('name')"  />
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <x-jet-input placeholder="Code" id="code" class="block mt-1 w-full" type="number"
+                                        name="code" value="{{old('code')}}" required a />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <x-jet-label for="etat" value="{{ __('État') }}" />
+                                    <select name="etat" value="{{old('etat')}}" class="form-select"
+                                        aria-label="Default select example">
+                                        <option value="Actif">Actif</option>
+                                        <option value="Inactif">Inactif</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+
+                                    <x-jet-label for="type" value="{{ __('Type') }}" />
+                                    <select name="type" value="{{old('type')}}" class="form-select"
+                                        aria-label="Default select example">
+                                        <option value="Standard">Standard</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <x-jet-label for="Libelle" value="{{ __('Libellé') }}" />
+                                    <textarea class="form-control" id="Libelle" rows="8" type="textarea" name="Libelle"
+                                        value="{{old('Libelle')}}" required></textarea>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                     @if ($errors->any())
                         <ul>
                             @foreach ($errors->all() as $err)

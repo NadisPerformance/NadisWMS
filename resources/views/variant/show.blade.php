@@ -12,7 +12,10 @@
         <thead>
           <tr>
             <th>ID</th>
-
+            <th>Code</th>
+            <th>Etat</th>
+            <th>Type</th>
+            <th>Libellé</th>
             <th>updated_at</th>
             <th>created_at</th>
           </tr>
@@ -20,7 +23,10 @@
         <tbody>
           <tr>
             <td>{{$variant->id}}</td>
-
+            <td>{{$variant->code}}</td>
+            <td>{{$variant->etat}}</td>
+            <td>{{$variant->type}}</td>
+            <td>{{$variant->Libelle}}</td>
             <td>{{$variant->updated_at}}</td>
             <td>{{$variant->created_at}}</td>
             

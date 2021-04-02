@@ -20,6 +20,7 @@
       <thead>
         <tr>
           <th>ID</th>
+          <th>Code</th>
           <th></th>
           <th></th>
           <th></th>
@@ -31,6 +32,7 @@
         
         <tr>
           <td>{{$variant->id}}</td>
+          <td>{{$variant->code}}</td>
           <td>
            <button>
             <a class="btn btn-success btn-icon " href="{{route('variant.show',['variant'=>$variant->id])}}">Plus</a>

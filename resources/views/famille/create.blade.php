@@ -24,14 +24,14 @@
                                 <div class="form-group">
 
                                     <x-jet-input placeholder="Nom" id="name" class="block mt-1 w-full" type="text"
-                                        name="name" :value="old('name')" required a />
+                                        name="name" value="{{old('name')}}" required  />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
 
                                     <x-jet-input placeholder="Code" id="code" class="block mt-1 w-full" type="number"
-                                        name="code" :value="old('code')" required a />
+                                        name="code" value="{{old('code')}}" required  />
                                 </div>
                             </div>
 
@@ -42,7 +42,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <x-jet-label for="etat" value="{{ __('État') }}" />
-                                    <select name="etat" :value="old('etat')" class="form-select"
+                                    <select name="etat" value="{{old('etat')}}" class="form-select"
                                         aria-label="Default select example">
                                         <option value="Actif">Actif</option>
                                         <option value="Inactif">Inactif</option>
@@ -53,7 +53,7 @@
                                 <div class="form-group">
 
                                     <x-jet-label for="type" value="{{ __('Type') }}" />
-                                    <select name="type" :value="old('type')" class="form-select"
+                                    <select name="type" value="{{old('type')}}" class="form-select"
                                         aria-label="Default select example">
                                         <option value="Primaire">Primaire</option>
                                         <option value="Secondaire">Secondaire</option>
@@ -66,9 +66,9 @@
                             <div class="col-md">
                                 <div class="form-group">
                                     <x-jet-label for="Libelle" value="{{ __('Libellé') }}" />
-                <textarea  class="form-control" id="Libelle" rows="8"
-                    type="textarea" name="Libelle" :value="old('Libelle')" required >
-                  </textarea>
+                                    <textarea class="form-control" id="Libelle" rows="8" type="textarea" name="Libelle"
+                                        value="{{old('Libelle')}}" required></textarea>
+
                                 </div>
                             </div>
 

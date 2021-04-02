@@ -10,11 +10,11 @@ class Variant extends Model
     use HasFactory;
     protected $fillable = [
         
-        'id',
+        'code','etat','type','Libelle',
         
         
        ];
     public function articles(){
-        return $this->hasMany(\app\Models\Article::class);  
+        return $this->hasMany(Article::class);  
     }
 }

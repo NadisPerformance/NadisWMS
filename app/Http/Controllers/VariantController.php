@@ -39,7 +39,7 @@ class VariantController extends Controller
         $variant = variant::create($request->all());
 
 
-        $request->session()->flash('msg', "Vous avez  ajouter un variant d'id : $variant->id ");
+        $request->session()->flash('msg', "Vous avez  ajouter un variant du code : $variant->code ");
         return redirect()->route("variant.create");
     }
 
@@ -77,9 +77,12 @@ class VariantController extends Controller
     {
         
        
-        
+        $variant->code=$request->input('code');
+        $variant->etat=$request->input('etat');
+        $variant->type=$request->input('type');
+        $variant->Libelle=$request->input('Libelle');
         $variant->save();
-        $request->session()->flash('msg',"vous avez modifier les donnees du variant d'id: $variant->id");
+        $request->session()->flash('msg',"vous avez modifier les donnees du variant du code: $variant->code");
         return redirect()->route('variant.index');
     }
 
@@ -92,7 +95,7 @@ class VariantController extends Controller
     public function destroy(Request $request,variant $variant)
     {
         $variant->delete();
-        $request->session()->flash('msg', "vous avez supprimer le variant d'id:  $variant->id");
+        $request->session()->flash('msg', "vous avez supprimer le variant du code :  $variant->code");
         return redirect()->route('variant.index');
     }
 }
