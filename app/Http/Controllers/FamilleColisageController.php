@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\familleColisage;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class familleColisageController extends Controller
@@ -12,6 +13,36 @@ class familleColisageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function action(Request $request)
+    {  
+        $familleColisages= familleColisage::all();
+        $articles= Article::all();
+        $compt=0;
+        $msge="";
+        if( $request->input('action')=='supp')
+        { 
+            foreach ($familleColisages as $familleColisage) {
+                $v=0;
+                if($request->input($familleColisage->id)){
+                    foreach ($articles as $article) {
+                        if($article->idFamilleColisage==$familleColisage->id){
+                          $v++;
+                        }
+                    }
+                    if($v==0){
+                        $familleColisage->delete();
+                        $compt++;
+                    }else{
+                        $msge=$msge. $familleColisage->name.", ";
+                    }  
+                }
+              }
+        if($msge!="")
+        $request->session()->flash('msge', "Vous pouvez pas supprimer les familles de colisage [ $msge], elles ont des acticles qui leur sont associés! ");
+        $request->session()->flash('msg', "Vous avez  supprimer $compt familles de colisage");
+        }
+        return back()->withInput();
+    }
     public function index()
     {
         return view('familleColisage.index', ['familleColisages' => familleColisage::all()]);

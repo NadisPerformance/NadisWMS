@@ -42,7 +42,7 @@ class FamilleController extends Controller
         $request->session()->flash('msge', "Vous pouvez pas supprimer les familles [ $msge], elles ont des acticles qui leur sont associés! ");
         $request->session()->flash('msg', "Vous avez  supprimer $compt familles ");
         }
-        return view('famille.index', ['familles' => famille::all()]);
+        return back()->withInput();
     }
   
     public function index()

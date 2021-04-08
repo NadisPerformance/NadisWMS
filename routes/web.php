@@ -51,6 +51,7 @@ Route::resource('/codeBarre',CodeBarreController::class);
 Route::resource('/modelePreparation',ModelePreparationController::class);
 Route::resource('/modeleSN',ModeleSNController::class);
 Route::get('/actionFamille',[FamilleController::class,'action'])->name('actionFamille');
+Route::get('/actionFamilleColisage',[FamilleColisageController::class,'action'])->name('actionFamilleColisage');
 Route::get('/actionArticle',[ArticleController::class,'action'])->name('actionArticle');
 Route::get('/actionConditionnementLogistique',[ConditionnementLogistiqueController::class,'action'])->name('actionConditionnementLogistique');
 

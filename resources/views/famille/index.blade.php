@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('List familles') }}
+            {{ __('Liste des familles des articles') }}
         </h2>
         @if (session('msg'))
             <h3 style="color: green">
@@ -12,7 +12,7 @@
         <h3 style="color: red">
             {{ session()->get('msge') }}
         </h3>
-    @endif
+        @endif
     </x-slot>
 
     <div class="container">
@@ -22,7 +22,7 @@
                 <a class="btn btn-success btn-icon " href="{{ route('famille.create') }}">Ajouter</a>
             </button>
             <button type="submit" name="action" value="supp" class="btn btn-danger btn-icon"
-                onClick="return confirm('Supprimer  !? ')"> Supprimer</button>
+                onClick="return confirm('Supprimer les séléctions')"> Supprimer</button>
             <table class="table table-hover" id="table">
                 <thead>
                     <tr>

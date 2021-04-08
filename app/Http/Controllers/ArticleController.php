@@ -90,7 +90,7 @@ class ArticleController extends Controller
               $request->session()->flash('msg', "Vous avez  valider $compt articles");   
               }
       
-        return view('article.index', ['articles' => article::all()]);
+              return back()->withInput();
     }
     
     public function index()

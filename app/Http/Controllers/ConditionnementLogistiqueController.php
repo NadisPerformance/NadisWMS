@@ -32,8 +32,7 @@ class ConditionnementLogistiqueController extends Controller
               }
         $request->session()->flash('msg', "Vous avez  supprimer $compt conditionnements logistiques ");
         }
-        return view('conditionnementLogistique.index', ['conditionnementLogistiques' => conditionnementLogistique::all()]);
-    }
+        return back()->withInput();    }
     public function index()
     {
         return view('conditionnementLogistique.index', ['conditionnementLogistiques' => conditionnementLogistique::all()]);
