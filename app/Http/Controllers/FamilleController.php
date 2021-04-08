@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Famille;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class FamilleController extends Controller
@@ -11,7 +12,39 @@ class FamilleController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
      */
+    public function action(Request $request)
+    {  
+        $familles= famille::all();
+        $articles= Article::all();
+        $compt=0;
+        $msge="";
+        if( $request->input('action')=='supp')
+        { 
+            foreach ($familles as $famille) {
+                $v=0;
+                if($request->input($famille->id)){
+                    foreach ($articles as $article) {
+                        if($article->idFamille==$famille->id){
+                          $v++;
+                        }
+                    }
+                    if($v==0){
+                        $famille->delete();
+                        $compt++;
+                    }else{
+                        $msge=$msge. $famille->name.", ";
+                    }  
+                }
+              }
+        if($msge!="")
+        $request->session()->flash('msge', "Vous pouvez pas supprimer les familles [ $msge], elles ont des acticles qui leur sont associés! ");
+        $request->session()->flash('msg', "Vous avez  supprimer $compt familles ");
+        }
+        return view('famille.index', ['familles' => famille::all()]);
+    }
+  
     public function index()
     {
         return view('famille.index', ['familles' => Famille::all()]);

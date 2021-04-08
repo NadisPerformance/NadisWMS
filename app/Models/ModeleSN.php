@@ -17,4 +17,7 @@ class ModeleSN extends Model
     public function articles(){
         return $this->belongsTo(Article::class,'idArticle');  
     }
+    public function lignes(){
+        return $this->hasMany(LigneModeleSN::class);  
+    }
 }

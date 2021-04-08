@@ -173,9 +173,8 @@
             <div class="col-md">
                 <div class="form-group">
                     <x-jet-label for="libelleLong" value="{{ __('Libelle Long') }}" />
-                    <textarea  class="form-control" id="libelleLong" rows="5"
-                        type="textarea" name="libelleLong" value="{{old('libelleLong',$article->libelleLong ?? null)}}" required >
-                      </textarea>
+                    <textarea class="form-control" id="libelleLong" rows="5" type="textarea" name="libelleLong"
+                    value="{{old('libelleLong',$article->libelleLong  ?? null)}}" required></textarea>
                 </div>
             </div>
         </div>

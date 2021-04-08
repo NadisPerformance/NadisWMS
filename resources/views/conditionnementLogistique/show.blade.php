@@ -19,6 +19,8 @@
             <th>Libellé</th>
             <th>updated_at</th>
             <th>created_at</th>
+            <th>Code à Barre</th>
+            <th>Modéle de préparation</th>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +33,26 @@
             <td>{{$conditionnementLogistique->Libelle}}</td>
             <td>{{$conditionnementLogistique->updated_at}}</td>
             <td>{{$conditionnementLogistique->created_at}}</td>
+            <td>
+              <select name="etat"  class="form-select" onChange="location = this.options[this.selectedIndex].value;">
+                <option value="#" selected>Les values des Codes à Barre</option>
+                @forelse ($cbs as $cb)
+                <option value="{{ route('codeBarre.show', ['codeBarre' => $cb->id]) }}">{{$cb->value}}</option>
+                @empty
+                 <p>Vide!</p>
+                @endforelse
+            </select>
+            </td>
+            <td>
+              <select name="etat"  class="form-select" onChange="location = this.options[this.selectedIndex].value;">
+                <option value="#" selected>Les modéles de préparation</option>
+                @forelse ($mps as $mp)
+                <option value="{{ route('modelePreparation.show', ['modelePreparation' => $mp->id]) }}">{{$mp->id}}</option>
+                @empty
+                 <p>Vide!</p>
+                @endforelse
+            </select>
+            </td>
             
           </tr>
           

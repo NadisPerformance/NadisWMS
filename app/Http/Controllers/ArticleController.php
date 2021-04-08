@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\ConditionnementLogistique;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -12,6 +13,86 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function action(Request $request)
+    {  
+        $articles= article::all();
+        $compt=0;
+        if( $request->input('action')=='supp')
+        {  
+            $msge="";
+            foreach ($articles as $article) {
+                if($request->input($article->id)){
+                    if($article->etat=="A supprimer"){
+                        $article->delete();
+                        $compt++;
+                    }else{
+                        $msge=$msge. $article->codeArticle.", ";  
+                        }
+                }
+              }
+        if($msge!="")
+        $request->session()->flash('msge', "Vous pouvez pas supprimer les articles qui sont pas en l'état A supprimer,Ont les codes [$msge] ");
+        $request->session()->flash('msg', "Vous avez  supprimer $compt articles ");
+        }else if( $request->input('action')=='Asupp')
+        {  
+            foreach ($articles as $article) {
+                if($request->input($article->id)){
+                    $article->etat="A supprimer";
+                    $article->save();
+                    $compt++;
+                }
+              }
+
+        $request->session()->flash('msg', "Vous avez  metre $compt articles en l'état A supprimer");
+        }else{
+            
+            $msge="";
+            $msgee="";
+            $msgeee="";
+            foreach ($articles as $article) {
+                if($request->input($article->id)){
+                    if($article->etat!="A supprimer"){
+                        $cls = ConditionnementLogistique::where('idArticle', $article->id)->get();
+                        if(empty($cls)){
+                            $msgee=$msgee. $article->codeArticle .", ";
+                        }else{
+                            $v=0;
+                            foreach ($cls as $cl) {
+                                if($cl->etat=="Actif"){
+                                    $v++;
+                                }
+                            }
+                            if($v!=0){
+                                $article->etat="Valider";
+                                    $article->save();
+                                    $compt++;
+                            }else{
+                            $msgeee=$msgeee. $article->codeArticle .", ";
+                            }
+                    
+                        }
+                        
+                    }else{
+                        $msge=$msge. $article->codeArticle .", ";  
+                        }
+                }
+              }
+              if($msge!=""){
+              $request->session()->flash('msge', "Vous pouvez pas valider les articles en l'état A supprimer,Ont les codes [$msge] ");
+              }
+              if($msgee!=""){
+              $request->session()->flash('msgee', "Vous pouvez pas valider les articles qu'on pas au moins un conditionnement logistique,Ont les codes [$msgee] ");
+              }  
+              if($msgeee!=""){
+              $request->session()->flash('msgeee', "pour valider les articles Ont les codes [$msgeee],ils devrainet avoir au moins un conditionnement
+              préparable à l’état actif ");
+              }
+              $request->session()->flash('msg', "Vous avez  valider $compt articles");   
+              }
+      
+        return view('article.index', ['articles' => article::all()]);
+    }
+    
     public function index()
     {
         return view('article.index', ['articles' => article::all()]);
@@ -50,7 +131,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('article.show', ['article' => $article]);
+        $cls = ConditionnementLogistique::where('idArticle', $article->id)->get();
+        return view('article.show', ['article' => $article,'cls' => $cls]);
     }
 
     /**

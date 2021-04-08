@@ -26,10 +26,10 @@ class Article extends Model
 
     ];
     public function familles(){
-        return $this->belongsTo(\app\Models\Famille::class,'idFamille');  
+        return $this->belongsTo(Famille::class,'idFamille');  
     }
     public function familleColisages(){
-        return $this->belongsTo(\app\Models\FamilleColisage::class,'idFamilleColisage');  
+        return $this->belongsTo(FamilleColisage::class,'idFamilleColisage');  
     }
     public function modeleStockages(){
         return $this->belongsTo(\app\Models\ModeleStockage::class,'idModeleStockage');  
@@ -41,22 +41,22 @@ class Article extends Model
         return $this->belongsTo(\app\Models\Marque::class,'idMarque');  
     }
     public function categories(){
-        return $this->belongsTo(\app\Models\Categorie::class,'idCategorie');  
+        return $this->belongsTo(Categorie::class,'idCategorie');  
     }
     public function contraintes(){
-        return $this->hasMany(\app\Models\Contrainte::class);  
+        return $this->hasMany(Contrainte::class);  
     }
     public function conditionnementLogistiques(){
-        return $this->hasMany(\app\Models\ConditionnementLogistique::class);  
+        return $this->hasMany(ConditionnementLogistique::class);  
     }
     public function prixes(){
-        return $this->belongsTo(\app\Models\Prix::class,'idPrix');  
+        return $this->belongsTo(Prix::class,'idPrix');  
     }
     public function variants(){
-        return $this->hasMany(\app\Models\Variant::class,'idVariant');  
+        return $this->hasMany(Variant::class,'idVariant');  
     }
     public function societes(){
-        return $this->belongsTo(\app\Models\Societe::class,'idSociete');  
+        return $this->belongsTo(Societe::class,'idSociete');  
     }
     public function modeleSNs(){
         return $this->belongsTo(ModeleSN::class);  

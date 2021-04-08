@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ConditionnementLogistique;
+use App\Models\CodeBarre;
+use App\Models\ModelePreparation;
+
 use Illuminate\Http\Request;
 
 class ConditionnementLogistiqueController extends Controller
@@ -12,6 +15,25 @@ class ConditionnementLogistiqueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function action(Request $request)
+    {  
+        $conditionnementLogistiques= conditionnementLogistique::all();
+        $compt=0;
+        if( $request->input('action')=='supp')
+        {  
+            $msge="";
+            foreach ($conditionnementLogistiques as $conditionnementLogistique) {
+                if($request->input($conditionnementLogistique->id)){
+                    
+                        $conditionnementLogistique->delete();
+                        $compt++;
+                    
+                }
+              }
+        $request->session()->flash('msg', "Vous avez  supprimer $compt conditionnements logistiques ");
+        }
+        return view('conditionnementLogistique.index', ['conditionnementLogistiques' => conditionnementLogistique::all()]);
+    }
     public function index()
     {
         return view('conditionnementLogistique.index', ['conditionnementLogistiques' => conditionnementLogistique::all()]);
@@ -50,7 +72,9 @@ class ConditionnementLogistiqueController extends Controller
      */
     public function show(conditionnementLogistique $conditionnementLogistique)
     {
-        return view('conditionnementLogistique.show', ['conditionnementLogistique' => $conditionnementLogistique]);
+        $cbs = CodeBarre::where('idConditionnementLogistique', $conditionnementLogistique->id)->get();
+        $mps = ModelePreparation::where('idConditionnementLogistique', $conditionnementLogistique->id)->get();
+        return view('conditionnementLogistique.show', ['conditionnementLogistique' => $conditionnementLogistique,'mps' => $mps,'cbs' => $cbs]);
     }
 
     /**
@@ -75,7 +99,7 @@ class ConditionnementLogistiqueController extends Controller
     public function update(Request $request, conditionnementLogistique $conditionnementLogistique)
     {
 
-        $conditionnementLogistique->idArticle = $request->input('idArticle');
+        $conditionnementLogistique->idconditionnementLogistique = $request->input('idconditionnementLogistique');
         $conditionnementLogistique->code = $request->input('code');
         $conditionnementLogistique->Libelle = $request->input('Libelle');
         $conditionnementLogistique->etat = $request->input('etat');

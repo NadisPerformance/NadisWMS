@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Famille extends Model
+class LigneModeleSN extends Model
 {
     use HasFactory;
     protected $fillable = [
         
-        'name','code','etat','type','Libelle',
+        'idModeleSN','nbAttendus','etat','sequenceReleve','Libelle','regleSouplesse',
         
         
        ];
     public function articles(){
-        return $this->hasMany(Article::class);  
+        return $this->belongsTo(ModeleSN::class,'idModeleSN');  
     }
 }
