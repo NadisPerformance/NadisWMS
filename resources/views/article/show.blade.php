@@ -35,7 +35,7 @@
             <td>
               <select name="etat"  class="form-select" onChange="location = this.options[this.selectedIndex].value;">
                 <option value="#" selected>Les code des conditionnements</option>
-                @forelse ($cls as $cl)
+                @forelse ($article->conditionnementLogistiques()->get() as $cl)
                 <option value="{{ route('conditionnementLogistique.show', ['conditionnementLogistique' => $cl->id]) }}">{{$cl->code}}</option>
                 @empty
                  <p>Vide!</p>

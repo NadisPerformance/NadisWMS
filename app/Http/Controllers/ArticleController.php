@@ -131,8 +131,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $cls = ConditionnementLogistique::where('idArticle', $article->id)->get();
-        return view('article.show', ['article' => $article,'cls' => $cls]);
+    
+        return view('article.show', ['article' => $article]);
     }
 
     /**

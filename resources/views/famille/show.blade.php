@@ -19,6 +19,7 @@
             <th>Libellé</th>
             <th>updated_at</th>
             <th>created_at</th>
+            <th>Articles</th>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +32,16 @@
             <td>{{$famille->Libelle}}</td>
             <td>{{$famille->updated_at}}</td>
             <td>{{$famille->created_at}}</td>
+            <td>
+              <select name="etat"  class="form-select" onChange="location = this.options[this.selectedIndex].value;">
+                <option value="#" selected>Les code des articles</option>
+                @forelse ($famille->articles()->get() as $article)
+                <option value="{{ redirect()->route('article.show', ['article' => $article->id]) }}">{{$article->codeArticle}}</option>
+                @empty
+                 <p>Vide!</p>
+                @endforelse
+            </select>
+            </td>
             
           </tr>
           

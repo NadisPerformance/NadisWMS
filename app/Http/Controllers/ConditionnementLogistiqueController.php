@@ -71,9 +71,7 @@ class ConditionnementLogistiqueController extends Controller
      */
     public function show(conditionnementLogistique $conditionnementLogistique)
     {
-        $cbs = CodeBarre::where('idConditionnementLogistique', $conditionnementLogistique->id)->get();
-        $mps = ModelePreparation::where('idConditionnementLogistique', $conditionnementLogistique->id)->get();
-        return view('conditionnementLogistique.show', ['conditionnementLogistique' => $conditionnementLogistique,'mps' => $mps,'cbs' => $cbs]);
+        return view('conditionnementLogistique.show', ['conditionnementLogistique' => $conditionnementLogistique]);
     }
 
     /**

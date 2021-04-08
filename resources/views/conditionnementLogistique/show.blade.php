@@ -36,7 +36,7 @@
             <td>
               <select name="etat"  class="form-select" onChange="location = this.options[this.selectedIndex].value;">
                 <option value="#" selected>Les values des Codes à Barre</option>
-                @forelse ($cbs as $cb)
+                @forelse ($conditionnementLogistique->codeBarres()->get()  as $cb)
                 <option value="{{ route('codeBarre.show', ['codeBarre' => $cb->id]) }}">{{$cb->value}}</option>
                 @empty
                  <p>Vide!</p>
@@ -46,7 +46,7 @@
             <td>
               <select name="etat"  class="form-select" onChange="location = this.options[this.selectedIndex].value;">
                 <option value="#" selected>Les modéles de préparation</option>
-                @forelse ($mps as $mp)
+                @forelse ($conditionnementLogistique->modelePreparations()->get() as $mp)
                 <option value="{{ route('modelePreparation.show', ['modelePreparation' => $mp->id]) }}">{{$mp->id}}</option>
                 @empty
                  <p>Vide!</p>

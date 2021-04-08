@@ -44,10 +44,10 @@ class Article extends Model
         return $this->belongsTo(Categorie::class,'idCategorie');  
     }
     public function contraintes(){
-        return $this->hasMany(Contrainte::class);  
+        return $this->hasMany(Contrainte::class,'idArticle');  
     }
     public function conditionnementLogistiques(){
-        return $this->hasMany(ConditionnementLogistique::class);  
+        return $this->hasMany(ConditionnementLogistique::class,'idArticle');  
     }
     public function prixes(){
         return $this->belongsTo(Prix::class,'idPrix');  
@@ -59,7 +59,7 @@ class Article extends Model
         return $this->belongsTo(Societe::class,'idSociete');  
     }
     public function modeleSNs(){
-        return $this->belongsTo(ModeleSN::class);  
+        return $this->belongsTo(ModeleSN::class,'idArticle');  
     }
 
 }

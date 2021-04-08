@@ -17,10 +17,10 @@ class ConditionnementLogistique extends Model
         
        ];
     public function codeBarres(){
-        return $this->hasMany(\app\Models\CodeBarre::class);  
+        return $this->hasMany(CodeBarre::class,'idConditionnementLogistique');  
     }
     public function modelePreparations(){
-        return $this->hasMany(\app\Models\ModelePreparation::class);  
+        return $this->hasMany(ModelePreparation::class,'idConditionnementLogistique');  
     }
     public function articles(){
         return $this->belongsTo(Article::class,'idArticle');  
