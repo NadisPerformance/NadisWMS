@@ -23,8 +23,12 @@
           <tr>
             <td>{{$codeBarre->id}}</td>
             <td>{{$codeBarre->value}}</td>
-            <td>{{$codeBarre->conditionnementLogistiques->code}}</td>
-            <td>{{$codeBarre->conditionnementLogistiques->articles->codeArticle}}</td>
+            <td>
+              <a href="{{ route('conditionnementLogistique.show', ['conditionnementLogistique' => $codeBarre->conditionnementLogistiques->id]) }}">{{$codeBarre->conditionnementLogistiques->code}}</a>
+            </td>
+            <td>
+              <a href="{{ route('article.show', ['article' => $codeBarre->conditionnementLogistiques->articles->id]) }}">{{$codeBarre->conditionnementLogistiques->articles->codeArticle}}</a>
+            </td>
             <td>{{$codeBarre->updated_at}}</td>
             <td>{{$codeBarre->created_at}}</td>
             

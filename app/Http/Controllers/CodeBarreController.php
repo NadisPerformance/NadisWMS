@@ -12,6 +12,28 @@ class CodeBarreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function action(Request $request)
+    {  
+        $codeBarres= codeBarre::all();
+        $compt=0;
+        
+        if( $request->input('action')=='supp')
+        { 
+            foreach ($codeBarres as $codeBarre) {
+               
+                if($request->input($codeBarre->id)){
+                    
+                   
+                        $codeBarre->delete();
+                        $compt++;
+                    
+                }
+              }
+        $request->session()->flash('msg', "Vous avez  supprimer $compt codes à barres ");
+        }
+        return back()->withInput();
+    }
+  
     public function index()
     {
         return view('codeBarre.index', ['codeBarres' => codeBarre::all()]);
