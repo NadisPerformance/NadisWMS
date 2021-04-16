@@ -18,6 +18,6 @@ class ModeleSN extends Model
         return $this->belongsTo(Article::class,'idArticle');  
     }
     public function lignes(){
-        return $this->hasMany(LigneModeleSN::class);  
+        return $this->hasMany(LigneModeleSN::class,'idModeleSN');  
     }
 }

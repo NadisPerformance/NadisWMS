@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Variant;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class VariantController extends Controller
@@ -12,6 +13,37 @@ class VariantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function action(Request $request)
+    {  
+        $variants= variant::all();
+        $articles= Article::all();
+        $compt=0;
+        $msge="";
+        if( $request->input('action')=='supp')
+        { 
+            foreach ($variants as $variant) {
+                $v=0;
+                if($request->input($variant->id)){
+                    foreach ($articles as $article) {
+                        if($article->idVariant==$variant->id){
+                          $v++;
+                        }
+                    }
+                    if($v==0){
+                        $variant->delete();
+                        $compt++;
+                    }else{
+                        $msge=$msge. $variant->code.", ";
+                    }  
+                }
+              }
+        if($msge!="")
+        $request->session()->flash('msge', "Vous pouvez pas supprimer les variants [ $msge], elles ont des acticles qui leur sont associés! ");
+        $request->session()->flash('msg', "Vous avez  supprimer $compt variants ");
+        }
+        return back()->withInput();
+    }
+
     public function index()
     {
         return view('variant.index', ['variants' => variant::all()]);

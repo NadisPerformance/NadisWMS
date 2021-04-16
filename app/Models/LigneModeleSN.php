@@ -10,11 +10,14 @@ class LigneModeleSN extends Model
     use HasFactory;
     protected $fillable = [
         
-        'idModeleSN','nbAttendus','etat','sequenceReleve','Libelle','regleSouplesse',
+        'idModeleSN','idFamilleSN','nombre',
         
         
        ];
-    public function articles(){
+    public function modeleSNs(){
         return $this->belongsTo(ModeleSN::class,'idModeleSN');  
+    }
+    public function familleSNs(){
+        return $this->belongsTo(FamilleSN::class,'idFamilleSN');  
     }
 }

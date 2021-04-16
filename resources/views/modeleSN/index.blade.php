@@ -1,24 +1,32 @@
 <x-app-layout>
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('List des modéle de S/N') }}
+          {{ __('Liste des modéles de S/N') }}
       </h2>
-      <button>
-        <a class="btn btn-success btn-icon " href="{{route('modeleSN.create')}}">Ajouter une modeleSN</a>
-       </button>
       @if (session('msg'))
       <h3 style="color: green">
        {{session()->get('msg')}}
       </h3>
     @endif
+        @if (session('msge'))
+        <h3 style="color: red">
+            {{ session()->get('msge') }}
+        </h3>
+        @endif
   </x-slot>
 
-  <div class="container">
-
-       
-    <table class="table table-hover">
+  <div class="container"> 
+    <form action="{{ route('actionModeleSN') }}" method="GET">
+      @csrf
+      <button>
+        <a class="btn btn-success btn-icon " href="{{route('modeleSN.create')}}">Ajouter une modeleSN</a>
+      </button>
+      <button type="submit" name="action" value="supp" class="btn btn-danger btn-icon"
+          onClick="return confirm('Supprimer les séléctions')"> Supprimer</button>
+      <table class="table table-hover" id="table">
       <thead>
         <tr>
+          <th><input type="checkbox" onclick="checkAll(this)"></th>
           <th>ID</th>
           <th></th>
           <th></th>
@@ -26,10 +34,11 @@
          
         </tr>
       </thead>
-      @forelse  ($modeleSNs as $modeleSN)
+     
       <tbody>
-        
+        @forelse  ($modeleSNs as $modeleSN)
         <tr>
+          <td><input type="checkbox" name="{{ $modeleSN->id }}" value="{{ $modeleSN->id }}"></td>
           <td>{{$modeleSN->id}}</td>
           <td>
            <button>
@@ -50,13 +59,14 @@
          </td>
      
         </tr>
-      </tbody>
-      @empty
+        @empty
     <p>Vide!</p>
 @endforelse  
+      </tbody>
+      
 
     </table>
-
+  </form>
   </div>
 </x-app-layout>
 

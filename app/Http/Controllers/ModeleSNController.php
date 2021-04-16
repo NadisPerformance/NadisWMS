@@ -12,6 +12,28 @@ class ModeleSNController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function action(Request $request)
+    {  
+        $modeleSNs= modeleSN::all();
+        $compt=0;
+        
+        if( $request->input('action')=='supp')
+        { 
+            foreach ($modeleSNs as $modeleSN) {
+               
+                if($request->input($modeleSN->id)){
+                    
+                   
+                        $modeleSN->delete();
+                        $compt++;
+                    
+                }
+              }
+        $request->session()->flash('msg', "Vous avez  supprimer $compt modéles de S\N ");
+        }
+        return back()->withInput();
+    }
+  
     public function index()
     {
         return view('modeleSN.index', ['modeleSNs' => modeleSN::all()]);

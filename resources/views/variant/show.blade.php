@@ -16,6 +16,7 @@
             <th>Etat</th>
             <th>Type</th>
             <th>Libellé</th>
+            <th>Les codes des articles</th>
             <th>updated_at</th>
             <th>created_at</th>
           </tr>
@@ -27,6 +28,16 @@
             <td>{{$variant->etat}}</td>
             <td>{{$variant->type}}</td>
             <td>{{$variant->Libelle}}</td>
+            <td>
+              <select name="etat"  class="form-select" onChange="location = this.options[this.selectedIndex].value;">
+                <option value="#" selected>Les code des articles</option>
+                @forelse ($variant->articles()->get() as $article)
+                <option value="{{ redirect()->route('article.show', ['article' => $article->id]) }}">{{$article->codeArticle}}</option>
+                @empty
+                 <p>Vide!</p>
+                @endforelse
+            </select>
+            </td>
             <td>{{$variant->updated_at}}</td>
             <td>{{$variant->created_at}}</td>
             

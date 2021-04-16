@@ -17,8 +17,9 @@ class CreateLigneModeleSNSTable extends Migration
             $table->id();
             $table->bigInteger('idModeleSN')->unsigned();
             $table->foreign('idModeleSN')->references('id')->on('modele_s_n_s')->onDelete('cascade');
-            $table->bigInteger("nbLigne");
-            $table->string("familleSN");
+            $table->bigInteger('idFamilleSN')->unsigned();
+            $table->foreign('idFamilleSN')->references('id')->on('famille_s_n_s')->onDelete('cascade');
+            $table->bigInteger('nombre');
             $table->timestamps();
         });
     }

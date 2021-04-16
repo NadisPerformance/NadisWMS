@@ -87,6 +87,15 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{route('familleSN.index')}}" :active="request()->routeIs('familleSN.index')">
+                        {{ __('Famille de S/N') }}
+                    </x-jet-nav-link>
+                </div><div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{route('ligneModeleSN.index')}}" :active="request()->routeIs('ligneModeleSN.index')">
+                        {{ __('ligne modélisation') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{route('test.index')}}" :active="request()->routeIs('test.index')">
                         {{ __('Test') }}
                     </x-jet-nav-link>

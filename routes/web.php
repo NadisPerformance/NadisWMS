@@ -15,6 +15,8 @@ use App\Http\Controllers\PrixController;
 use App\Http\Controllers\SocieteController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\VariantController;
+use App\Http\Controllers\LigneModeleSNController;
+use App\Http\Controllers\FamilleSNController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,8 +52,14 @@ Route::resource('/conditionnementLogistique',ConditionnementLogistiqueController
 Route::resource('/codeBarre',CodeBarreController::class);
 Route::resource('/modelePreparation',ModelePreparationController::class);
 Route::resource('/modeleSN',ModeleSNController::class);
+Route::resource('/ligneModeleSN',LigneModeleSNController::class);
+Route::resource('/familleSN',FamilleSNController::class);
 Route::get('/actionFamille',[FamilleController::class,'action'])->name('actionFamille');
 Route::get('/actionFamilleColisage',[FamilleColisageController::class,'action'])->name('actionFamilleColisage');
 Route::get('/actionArticle',[ArticleController::class,'action'])->name('actionArticle');
 Route::get('/actionConditionnementLogistique',[ConditionnementLogistiqueController::class,'action'])->name('actionConditionnementLogistique');
 Route::get('/actionCodeBarre',[CodeBarreController::class,'action'])->name('actionCodeBarre');
+Route::get('/actionModeleSN',[ModeleSNController::class,'action'])->name('actionModeleSN');
+Route::get('/actionFamilleSN',[FamilleSNController::class,'action'])->name('actionFamilleSN');
+Route::get('/actionLigne',[LigneModeleSNController::class,'action'])->name('actionLigne');
+Route::get('/actionVariant',[VariantController::class,'action'])->name('actionVariant');

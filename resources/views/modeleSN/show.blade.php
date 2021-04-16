@@ -17,7 +17,7 @@
             <th>Nb de n° S/N attendus</th>
             <th>Séquence de relevé</th>
             <th>Règle de souplesse</th>
-            <th>Code d'article</th>
+            <th>N° des linges</th>
             <th>updated_at</th>
             <th>created_at</th>
           </tr>
@@ -30,10 +30,18 @@
             <td>{{$modeleSN->nbAttendus}}</td>
             <td>{{$modeleSN->sequenceReleve}}</td>
             <td>{{$modeleSN->regleSouplesse}}</td>
-            <td>{{$modeleSN->articles->codeArticle}}</td>
+            <td>
+              <select name="etat"  class="form-select" onChange="location = this.options[this.selectedIndex].value;">
+                <option value="#" selected>Les n° des lignes</option>
+                @forelse ($modeleSN->lignes()->get() as $ligne)
+                <option value="{{ route('ligneModeleSN.show', ['ligneModeleSN' => $ligne->id]) }}">{{$ligne->nombre}}</option>
+                @empty
+                 <p>Vide!</p>
+                @endforelse
+            </select>
+            </td>
             <td>{{$modeleSN->updated_at}}</td>
             <td>{{$modeleSN->created_at}}</td>
-            
           </tr>
           
         </tbody>
