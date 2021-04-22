@@ -1,100 +1,122 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-dark max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
-                    </a>
+                <div style="width: 15%" class="flex-shrink-0 flex items-center">
+                    <x-jet-nav-link  href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="navbar-brand">
+                        <img  src="tamplet\assets\img\logowms.png" alt=""> <b>NadisWMS</b> 
+                    </x-jet-nav-link>
                 </div>
+                <div style="margin-left: 10%">
+                    <button  class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+                    </div>
+ <!-- CRUD -->
+ <div class="ml-3 relative" style="margin-top: 2%">
+    <x-jet-dropdown align="left" width="48">
+        <x-slot name="trigger">
+                <span class="inline-flex rounded-md">
+                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                       CRUD
+                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </span>
+        </x-slot>
+        <x-slot name="content">
+            <!-- Account Management -->
+            <div class="block px-6 py-2 text-xs text-gray-400">
+                {{ __('les listes de tous les tableaux') }}
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('article.index')}}" :active="request()->routeIs('article.index')">
+                    {{ __('Article') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('famille.index')}}" :active="request()->routeIs('famille.index')">
+                    {{ __('Famille') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('familleColisage.index')}}" :active="request()->routeIs('familleColisage.index')">
+                    {{ __('Famille de colisage') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('marque.index')}}" :active="request()->routeIs('marque.index')">
+                    {{ __('Marque') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('categorie.index')}}" :active="request()->routeIs('categorie.index')">
+                    {{ __('Categorie') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('modeleStockage.index')}}" :active="request()->routeIs('modeleStockage.index')">
+                    {{ __('Modele de stockages') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('familleQuarantaine.index')}}" :active="request()->routeIs('familleQuarantaine.index')">
+                    {{ __('Famille de quarantaine') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('prix.index')}}" :active="request()->routeIs('prix.index')">
+                    {{ __('Prix') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('variant.index')}}" :active="request()->routeIs('variant.index')">
+                    {{ __('Variant') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('societe.index')}}" :active="request()->routeIs('societe.index')">
+                    {{ __('Societe') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('conditionnementLogistique.index')}}" :active="request()->routeIs('conditionnementLogistique.index')">
+                    {{ __('Conditionnement Logistique') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('codeBarre.index')}}" :active="request()->routeIs('codeBarre.index')">
+                    {{ __('codeBarre') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('modelePreparation.index')}}" :active="request()->routeIs('modelePreparation.index')">
+                    {{ __('Modele de préparation') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('modeleSN.index')}}" :active="request()->routeIs('modeleSN.index')">
+                    {{ __('modéle de S/N') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('familleSN.index')}}" :active="request()->routeIs('familleSN.index')">
+                    {{ __('Famille de S/N') }}
+                </x-jet-nav-link>
+            </div><div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{route('ligneModeleSN.index')}}" :active="request()->routeIs('ligneModeleSN.index')">
+                    {{ __('ligne modélisation') }}
+                </x-jet-nav-link>
+            </div>
+            <div class="border-t border-gray-100"></div><!-- la linge -->
 
+        </x-slot>
+    </x-jet-dropdown>
+</div>
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('article.index')}}" :active="request()->routeIs('article.index')">
-                        {{ __('Article') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('famille.index')}}" :active="request()->routeIs('famille.index')">
-                        {{ __('Famille') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('familleColisage.index')}}" :active="request()->routeIs('familleColisage.index')">
-                        {{ __('Famille de colisage') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('marque.index')}}" :active="request()->routeIs('marque.index')">
-                        {{ __('Marque') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('categorie.index')}}" :active="request()->routeIs('categorie.index')">
-                        {{ __('Categorie') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('modeleStockage.index')}}" :active="request()->routeIs('modeleStockage.index')">
-                        {{ __('Modele de stockages') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('familleQuarantaine.index')}}" :active="request()->routeIs('familleQuarantaine.index')">
-                        {{ __('Famille de quarantaine') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('prix.index')}}" :active="request()->routeIs('prix.index')">
-                        {{ __('Prix') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('variant.index')}}" :active="request()->routeIs('variant.index')">
-                        {{ __('Variant') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('societe.index')}}" :active="request()->routeIs('societe.index')">
-                        {{ __('Societe') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('conditionnementLogistique.index')}}" :active="request()->routeIs('conditionnementLogistique.index')">
-                        {{ __('Conditionnement Logistique') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('codeBarre.index')}}" :active="request()->routeIs('codeBarre.index')">
-                        {{ __('codeBarre') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('modelePreparation.index')}}" :active="request()->routeIs('modelePreparation.index')">
-                        {{ __('Modele de préparation') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('modeleSN.index')}}" :active="request()->routeIs('modeleSN.index')">
-                        {{ __('modéle de S/N') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('familleSN.index')}}" :active="request()->routeIs('familleSN.index')">
-                        {{ __('Famille de S/N') }}
-                    </x-jet-nav-link>
-                </div><div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('ligneModeleSN.index')}}" :active="request()->routeIs('ligneModeleSN.index')">
-                        {{ __('ligne modélisation') }}
-                    </x-jet-nav-link>
-                </div>
+             
+                
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{route('test.index')}}" :active="request()->routeIs('test.index')">
                         {{ __('Test') }}
@@ -298,4 +320,119 @@
             </div>
         </div>
     </div>
-</nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">CŒUR</div>
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Accuiel
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Interface</div>
+                        
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Pages
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                    Articles
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <x-jet-nav-link href="{{route('article.index')}}" :active="request()->routeIs('article.index')">
+                                            {{ __('Liste') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('famille.index')}}" :active="request()->routeIs('famille.index')">
+                                            {{ __('Famille') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('familleColisage.index')}}" :active="request()->routeIs('familleColisage.index')">
+                                            {{ __('Famille de colisage') }}
+                                        </x-jet-nav-link> 
+                                        <x-jet-nav-link href="{{route('familleQuarantaine.index')}}" :active="request()->routeIs('familleQuarantaine.index')">
+                                            {{ __('Famille de quarantaine') }}
+                                        </x-jet-nav-link>       
+                                        <x-jet-nav-link href="{{route('modeleStockage.index')}}" :active="request()->routeIs('modeleStockage.index')">
+                                            {{ __('Modele de stockages') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('variant.index')}}" :active="request()->routeIs('variant.index')">
+                                            {{ __('Variant') }}
+                                        </x-jet-nav-link>         
+                                    </nav>
+                                </div>
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseCL" aria-expanded="false" aria-controls="pagesCollapseCL">
+                                    Conditionnement Logistique
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseCL" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <x-jet-nav-link href="{{route('conditionnementLogistique.index')}}" :active="request()->routeIs('conditionnementLogistique.index')">
+                                            {{ __('Liste') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('codeBarre.index')}}" :active="request()->routeIs('codeBarre.index')">
+                                            {{ __('Codes à barre') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('modelePreparation.index')}}" :active="request()->routeIs('modelePreparation.index')">
+                                            {{ __('Modele de préparation') }}
+                                        </x-jet-nav-link>
+                                    </nav>
+                                </div>
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapsemns" aria-expanded="false" aria-controls="pagesCollapsemns">
+                                    modèles de S/N
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapsemns" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <x-jet-nav-link href="{{route('modeleSN.index')}}" :active="request()->routeIs('modeleSN.index')">
+                                            {{ __('Liste') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('ligneModeleSN.index')}}" :active="request()->routeIs('ligneModeleSN.index')">
+                                            {{ __('Lignes de modèle S/N') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('familleSN.index')}}" :active="request()->routeIs('familleSN.index')">
+                                            {{ __('Famille de S/N') }}
+                                        </x-jet-nav-link>
+                                    </nav>
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="sb-sidenav-menu-heading">Additifs</div>
+                        <a class="nav-link" href="#">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Charts
+                        </a>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseT" aria-expanded="false" aria-controls="pagesCollapseT">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Tables
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="pagesCollapseT" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <x-jet-nav-link href="{{route('marque.index')}}" :active="request()->routeIs('marque.index')">
+                                    {{ __('Marque') }}
+                                </x-jet-nav-link>
+                                <x-jet-nav-link href="{{route('categorie.index')}}" :active="request()->routeIs('categorie.index')">
+                                    {{ __('Categorie') }}
+                                </x-jet-nav-link>
+                                <x-jet-nav-link href="{{route('prix.index')}}" :active="request()->routeIs('prix.index')">
+                                    {{ __('Prix') }}
+                                </x-jet-nav-link>
+                                <x-jet-nav-link href="{{route('societe.index')}}" :active="request()->routeIs('societe.index')">
+                                    {{ __('Societe') }}
+                                </x-jet-nav-link>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Start Bootstrap
+                </div>
+            </nav>
+        </div>
+       
