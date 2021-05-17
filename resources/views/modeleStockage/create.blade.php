@@ -1,6 +1,5 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Ajouter une modeleStockage') }}
         </h2>
@@ -9,8 +8,10 @@
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('modeleStockage.index')}}">Modéles de stockage</a></li>
+            <li class="breadcrumb-item active">Création</li>
+          </ol>
     <div class="container">
         <div class="row">
             <div class="modal-content">

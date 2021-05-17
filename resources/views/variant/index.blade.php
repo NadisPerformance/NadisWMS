@@ -1,5 +1,5 @@
 <x-app-layout>
-  <x-slot name="header">
+
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
           {{ __('Liste des variants') }}
       </h2>
@@ -13,7 +13,9 @@
             {{ session()->get('msge') }}
         </h3>
         @endif
-  </x-slot>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">Variants</li>
+      </ol> 
 
   <div class="container">
     <form action="{{ route('actionVariant') }}" method="GET">
@@ -23,7 +25,7 @@
       </button>
       <button type="submit" name="action" value="supp" class="btn btn-danger btn-icon"
           onClick="return confirm('Supprimer les séléctions')"> Supprimer</button>
-      <table class="table table-hover" id="table">
+      <table class="table table-bordered" id="table">
       <thead>
         <tr>
           <th><input type="checkbox" onclick="checkAll(this)"></th>
@@ -42,39 +44,32 @@
           <td>{{$variant->id}}</td>
           <td>{{$variant->code}}</td>
           <td>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <button>
-                            <a class="btn btn-success btn-icon "
-                                href="{{ route('variant.show', ['variant' => $variant->id]) }}">Plus</a>
-                        </button>
+                                
+            <button title="Détails" >
+                <a class="btn btn-primary " href="{{ route('variant.show', ['variant' => $variant->id]) }}">
+                  +
+                  </a>
+            </button>
 
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <button>
-                            <a class="btn btn-warning "
-                                href="{{ route('variant.edit', ['variant' => $variant->id]) }}">Modifier</a>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                            <form action="{{ route('variant.destroy', ['variant' => $variant->id]) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="input" name="submit" class="btn btn-danger btn-icon"
-                                    onClick="return confirm('Supprimer {{ $variant->code }} !? ')">
-                                    Supprimer</button>
-                            </form>
-                      </div>
-                    </div>
-                   
-              </div>
-        </td>
+            <button  class="btn btn-warning ">
+                
+                <a title="Modifier le variant du code {{ $variant->code }}" href="{{ route('variant.edit', ['variant' => $variant->id]) }}">
+                    <i class="fa fa-edit"></i>Modifier
+                </a>
+
+            </button>
+            <form style="display: inline;"></form>
+            <form style="display: inline;" action="{{ route('variant.destroy', ['variant' => $variant->id]) }}"
+                    method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="input" name="submit" class="btn btn-danger" title="Supprimer le variant du code {{ $variant->code }}"
+                        onClick="return confirm('Suppriment le variant')">
+                        <i class="fa fa-trash"></i>Supprimer
+                    </button>
+            </form>
+            
+</td>
      
         </tr>
         @empty

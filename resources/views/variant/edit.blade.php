@@ -1,15 +1,17 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Modifier une variant') }}
+            Modifier le variant du code {{$variant->code}}
         </h2>
         @if (session('msg'))
             <h3 style="color: green">
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('variant.index')}}">Variants</a></li>
+            <li class="breadcrumb-item active">Modification</li>
+        </ol>
 
     <div class="container">
         <div class="row">

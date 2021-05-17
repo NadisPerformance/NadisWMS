@@ -1,5 +1,4 @@
 <x-app-layout>
-  <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
           {{ __('Liste des familles de colisage') }}
       </h2>
@@ -13,7 +12,9 @@
             {{ session()->get('msge') }}
         </h3>
       @endif
-  </x-slot>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Familles de colisage</li>
+    </ol> 
 
   <div class="container">
     <form action="{{ route('actionFamilleColisage') }}" method="GET">
@@ -23,13 +24,13 @@
         </button>
         <button type="submit" name="action" value="supp" class="btn btn-danger btn-icon"
             onClick="return confirm('Supprimer  les sélections ')"> Supprimer</button>
-        <table class="table table-hover" id="table">
-            <thead>
+            <table class="table table-bordered"  id="table">
+                <thead>
                 <tr>
                     <th><input type="checkbox" onclick="checkAll(this)"></th>
                     <th>ID</th>
                     <th>Nom</th>
-                    <th>Acton</th>
+                    <th>Action</th>
     
 
                 </tr>
@@ -42,38 +43,31 @@
                         <td>{{ $familleColisage->id }}</td>
                         <td>{{ $familleColisage->name }}</td>
                         <td>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <button>
-                                            <a class="btn btn-success btn-icon "
-                                                href="{{ route('familleColisage.show', ['familleColisage' => $familleColisage->id]) }}">Plus</a>
-                                        </button>
-    
-                                      </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                      <div class="form-group">
-                                        <button>
-                                            <a class="btn btn-warning "
-                                                href="{{ route('familleColisage.edit', ['familleColisage' => $familleColisage->id]) }}">Modifier</a>
-                                        </button>
-                                      </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                      <div class="form-group">
-                                            <form action="{{ route('familleColisage.destroy', ['familleColisage' => $familleColisage->id]) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="input" name="submit" class="btn btn-danger btn-icon"
-                                                    onClick="return confirm('Supprimer {{ $familleColisage->name }} !? ')">
-                                                    Supprimer</button>
-                                            </form>
-                                      </div>
-                                    </div>
-                                   
-                              </div>
+                                
+                            <button title="Détails" >
+                                <a class="btn btn-primary " href="{{ route('familleColisage.show', ['familleColisage' => $familleColisage->id]) }}">
+                                  +
+                                  </a>
+                            </button>
+
+                            <button  class="btn btn-warning ">
+                                
+                                <a title="Modifier la famille de colisage {{ $familleColisage->name }}" href="{{ route('familleColisage.edit', ['familleColisage' => $familleColisage->id]) }}">
+                                    <i class="fa fa-edit"></i>Modifier
+                                </a>
+        
+                            </button>
+                            <form style="display: inline;"></form>
+                            <form style="display: inline;" action="{{ route('familleColisage.destroy', ['familleColisage' => $familleColisage->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="input" name="submit" class="btn btn-danger" title="Supprimer la famille de colisage {{ $familleColisage->name }}"
+                                        onClick="return confirm('Suppriment la famille de colisage')">
+                                        <i class="fa fa-trash"></i>Supprimer
+                                    </button>
+                            </form>
+                            
                         </td>
                     </tr>
                 @empty

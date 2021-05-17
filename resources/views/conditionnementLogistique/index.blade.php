@@ -1,15 +1,15 @@
 <x-app-layout>
-  <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('Liste des conditionnement logistiques') }}
+          {{ __('Liste des conditionnements logistiques') }}
       </h2>
       @if (session('msg'))
       <h3 style="color: green">
        {{session()->get('msg')}}
       </h3>
     @endif
-  </x-slot>
-
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">Conditionnements logistiques</li>
+  </ol> 
   <div class="container">
 
     <form action="{{ route('actionConditionnementLogistique') }}" method="GET">
@@ -19,7 +19,7 @@
           </button>
           <button type="submit" name="action" value="supp" class="btn btn-danger btn-icon"
                   onClick="return confirm('Supprimer  !? ')"> Supprimer</button>
-    <table class="table table-hover" id="table">
+    <table class="table table-bordered" id="table">
       <thead>
         <tr>
           <th><input type="checkbox" onclick="checkAll(this)"></th>
@@ -39,39 +39,32 @@
           <td>{{$conditionnementLogistique->code}}</td>
           <td>{{$conditionnementLogistique->type}}</td>
           <td>
-            <div class="row">
-              <div class="col-md-4">
-                  <div class="form-group">
-                      <button>
-                          <a class="btn btn-success btn-icon "
-                              href="{{ route('conditionnementLogistique.show', ['conditionnementLogistique' => $conditionnementLogistique->id]) }}">Plus</a>
-                      </button>
+                                
+            <button title="Détails" >
+                <a class="btn btn-primary " href="{{ route('conditionnementLogistique.show', ['conditionnementLogistique' => $conditionnementLogistique->id]) }}">
+                  +
+                  </a>
+            </button>
 
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <button>
-                          <a class="btn btn-warning "
-                              href="{{ route('conditionnementLogistique.edit', ['conditionnementLogistique' => $conditionnementLogistique->id]) }}">Modifier</a>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                          <form action="{{ route('conditionnementLogistique.destroy', ['conditionnementLogistique' => $conditionnementLogistique->id]) }}"
-                              method="POST">
-                              @csrf
-                              @method('DELETE')
-                              <button type="input" name="submit" class="btn btn-danger btn-icon"
-                                  onClick="return confirm('Supprimer {{ $conditionnementLogistique->codeconditionnementLogistique }} !? ')">
-                                  Supprimer</button>
-                          </form>
-                    </div>
-                  </div>
-                 
-            </div>
-          </td>
+            <button  class="btn btn-warning ">
+                
+                <a title="Modifier le conditionnement logistique du code{{ $conditionnementLogistique->code }}" href="{{ route('conditionnementLogistique.edit', ['conditionnementLogistique' => $conditionnementLogistique->id]) }}">
+                    <i class="fa fa-edit"></i>Modifier
+                </a>
+
+            </button>
+            <form style="display: inline;"></form>
+            <form style="display: inline;" action="{{ route('conditionnementLogistique.destroy', ['conditionnementLogistique' => $conditionnementLogistique->id]) }}"
+                    method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="input" name="submit" class="btn btn-danger" title="Supprimer le conditionnement logistique du code {{ $conditionnementLogistique->code }}"
+                        onClick="return confirm('Suppriment le conditionnement logistique?')">
+                        <i class="fa fa-trash"></i>Supprimer
+                    </button>
+            </form>
+            
+        </td>
      
         </tr>
         @empty

@@ -1,7 +1,7 @@
 <x-app-layout>
-  <x-slot name="header">
+
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('List familleQuarantaines') }}
+          {{ __('Liste des familles de quarantaine') }}
       </h2>
       <button>
         <a class="btn btn-success btn-icon " href="{{route('familleQuarantaine.create')}}">Ajouter une familleQuarantaine</a>
@@ -11,49 +11,58 @@
        {{session()->get('msg')}}
       </h3>
     @endif
-  </x-slot>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">Familles de quarantaine</li>
+  </ol> 
 
-  <div class="container">
+  <div class="container"> 
 
        
-    <table class="table table-hover">
+    <table class="table table-bordered"  id="table">
       <thead>
         <tr>
           <th>ID</th>
-          <th></th>
-          <th></th>
-          <th></th>
-         
+          <th>Action</th>
         </tr>
       </thead>
-      @forelse  ($familleQuarantaines as $familleQuarantaine)
       <tbody>
-        
+        @forelse  ($familleQuarantaines as $familleQuarantaine)
         <tr>
           <td>{{$familleQuarantaine->id}}</td>
           <td>
-           <button>
-            <a class="btn btn-success btn-icon " href="{{route('familleQuarantaine.show',['familleQuarantaine'=>$familleQuarantaine->id])}}">Plus</a>
-           </button>
-          </td>
-       
-          <td> 
-          <button>
-          <a class="btn btn-warning " href="{{route('familleQuarantaine.edit',['familleQuarantaine'=>$familleQuarantaine->id])}}">Modifier</a>
-          </button></td>
-          <td>
-            <form action="{{route('familleQuarantaine.destroy',['familleQuarantaine'=>$familleQuarantaine->id])}}" method="POST">
-             @csrf
-             @method('DELETE')
-             <button type="input" name="submit"  class="btn btn-danger btn-icon" onClick="return confirm('Supprimer {{$familleQuarantaine->name}} !? ')"> Supprimer</button>
+                                
+            <button title="Détails" >
+                <a class="btn btn-primary " href="{{ route('familleQuarantaine.show', ['familleQuarantaine' => $familleQuarantaine->id]) }}">
+                  +
+                  </a>
+            </button>
+
+            <button  class="btn btn-warning ">
+                
+                <a title="Modifier la famille de quarantaine d'id {{ $familleQuarantaine->id }}" href="{{ route('familleQuarantaine.edit', ['familleQuarantaine' => $familleQuarantaine->id]) }}">
+                    <i class="fa fa-edit"></i>Modifier
+                </a>
+
+            </button>
+            <form style="display: inline;"></form>
+            <form style="display: inline;" action="{{ route('familleQuarantaine.destroy', ['familleQuarantaine' => $familleQuarantaine->id]) }}"
+                    method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="input" name="submit" class="btn btn-danger" title="Supprimer la famille de quarantaine d'id  {{ $familleQuarantaine->id }}"
+                        onClick="return confirm('Suppriment la famille de quarantaine ')">
+                        <i class="fa fa-trash"></i>Supprimer
+                    </button>
             </form>
-         </td>
+            
+</td>
      
         </tr>
-      </tbody>
-      @empty
+        @empty
     <p>Vide!</p>
 @endforelse  
+      </tbody>
+      
 
     </table>
 

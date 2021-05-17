@@ -1,14 +1,17 @@
   
   <x-app-layout>
-    <x-slot name="header">
+    
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{$familleColisage->name}}
+          Détails de la famille de colisage {{$familleColisage->name}}
         </h2>
-    </x-slot>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item"><a href="{{route('familleColisage.index')}}">Familles de colisage</a></li>
+          <li class="breadcrumb-item active">Détails</li>
+        </ol>
 
     
     <div class="container">           
-      <table class="table table-hover">
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th>ID</th>
@@ -36,7 +39,7 @@
               <select name="etat"  class="form-select" onChange="location = this.options[this.selectedIndex].value;">
                 <option value="#" selected>Les code des articles</option>
                 @forelse ($familleColisage->articles()->get() as $article)
-                <option value="{{ redirect()->route('article.show', ['article' => $article->id]) }}">{{$article->codeArticle}}</option>
+                <option value="{{ route('article.show', ['article' => $article->id]) }}">{{$article->codeArticle}}</option>
                 @empty
                  <p>Vide!</p>
                 @endforelse

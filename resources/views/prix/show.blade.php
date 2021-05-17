@@ -1,14 +1,15 @@
   
   <x-app-layout>
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{$prix->id}}
+          Détails du prix d'id {{$prix->id}}
         </h2>
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item"><a href="{{route('prix.index')}}">Prixs</a></li>
+          <li class="breadcrumb-item active">Détails</li>
+      </ol> 
     
     <div class="container">           
-      <table class="table table-hover">
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th>ID</th>

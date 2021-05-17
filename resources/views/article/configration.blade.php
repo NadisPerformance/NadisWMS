@@ -1,7 +1,7 @@
-<div class='form-control'>
+
     <fieldset>
-        <div class="modal-header">
-            <h4 class="modal-title">Configration</h4>
+        <div class="modal-header"> 
+            <h1 class="modal-title">Configration</h1>
         </div>
         <div class="modal-body">
             <div class="row">
@@ -171,4 +171,4 @@
 
 
 </fieldset>
-</div>
+

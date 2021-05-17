@@ -10,7 +10,7 @@
     <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css" rel="stylesheet">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <link href="tamplet/css/styles.css" rel="stylesheet" />
+    <link href="{{ asset('tamplet/css/styles.css') }}" rel="stylesheet" type="text/css" >
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     
@@ -97,11 +97,11 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                        <div class="text-muted">droits d'auteur &copy; Système de gestion d'entrepôt 2021</div>
                         <div>
-                            <a href="#">Privacy Policy</a>
+                            <a href="#">Politique de confidentialité</a>
                             &middot;
-                            <a href="#">Terms &amp; Conditions</a>
+                            <a href="#">termes &amp; Conditions</a>
                         </div>
                     </div>
                 </div>
@@ -118,13 +118,14 @@
     @livewireScripts
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="tamplet/js/scripts.js"></script>
+    <script type="text/javascript" src="{{ asset('tamplet/js/scripts.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="tamplet/assets/demo/chart-area-demo.js"></script>
-    <script src="tamplet/assets/demo/chart-bar-demo.js"></script>
+    <script type="text/javascript" src="{{ asset('tamplet/assets/demo/chart-area-demo.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('tamplet/assets/demo/chart-bar-demo.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="tamplet/assets/demo/datatables-demo.js"></script>
-    <script src="tamplet/assets/demo/chart-pie-demo.js"></script>
+    <script type="text/javascript" src="{{ asset('tamplet/assets/demo/datatables-demo.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('tamplet/assets/demo/chart-pie-demo.js') }}"></script>
+
 </body>
 </html>

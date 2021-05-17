@@ -14,6 +14,7 @@ class Famille extends Model
         
         
        ];
+       
     public function articles(){
         return $this->hasMany(Article::class,'idFamille');  
     }

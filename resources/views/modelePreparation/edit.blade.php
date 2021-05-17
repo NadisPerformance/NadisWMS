@@ -1,16 +1,17 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Modifier une modele de préparation') }}
+            Modifier le moéle de préparation d'id {{$modelePreparation->id}}
         </h2>
         @if (session('msg'))
             <h3 style="color: green">
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('modelePreparation.index')}}">Modeles de préparation</a></li>
+            <li class="breadcrumb-item active">Modification</li>
+        </ol>
     <div class="container">
         <div class="row">
             <div class="modal-content">
@@ -24,9 +25,18 @@
                             
                             <div class="col-md">
                                 <div class="form-group">
-                                    <x-jet-input placeholder="Conditionnement Logistique" id="idConditionnementLogistique" class="block mt-1 w-full" type="number"
-                                    name="idConditionnementLogistique" value="{{old('idConditionnementLogistique',$modelePreparation->idConditionnementLogistique)}}" required />
-
+                                    <x-jet-label for="idConditionnementLogistique" value="{{ __('Famille Support') }}" />
+                                    <select name="idConditionnementLogistique"  class="form-select"
+                                        aria-label="Default select example">
+                                        @forelse ($conditionnementLogistiques as $conditionnementLogistique)
+                                        <option value="{{$conditionnementLogistique->id}}" 
+                                             {{(old('idConditionnementLogistique',$modelePreparation->idConditionnementLogistique)==$conditionnementLogistique->id)? 'selected':''}}>
+                                             {{$conditionnementLogistique->code}}
+                                        </option> 
+                                        @empty
+                                          <option value="">Vide</option>  
+                                        @endforelse                                      
+                                    </select>
                                 </div>
                             </div>
                         </div>

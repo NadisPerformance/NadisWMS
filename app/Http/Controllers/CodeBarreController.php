@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CodeBarre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CodeBarreController extends Controller
 {
@@ -44,9 +45,11 @@ class CodeBarreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {return view('codeBarre.create');
-        
+    public function create(Request $request)
+    {
+        return view('codeBarre.create', [
+        'conditionnementLogistiques' => DB::table('conditionnement_logistiques')->select('id', 'code')->get(),
+        ]); 
     }
 
     /**
@@ -84,8 +87,9 @@ class CodeBarreController extends Controller
     public function edit(codeBarre $codeBarre)
     {
         
-        return view('codeBarre.edit',['codeBarre'=>$codeBarre]);
-    }
+        return view('codeBarre.edit',['codeBarre'=>$codeBarre,
+        'conditionnementLogistiques' => DB::table('conditionnement_logistiques')->select('id', 'code')->get(),
+        ]);     }
 
     /**
      * Update the specified resource in storage.

@@ -1,16 +1,17 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Modifier une conditionnementLogistique') }}
+            Modifier du conditionnement logistique du code {{$conditionnementLogistique->code}}
         </h2>
         @if (session('msg'))
             <h3 style="color: green">
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('conditionnementLogistique.index')}}">Conditionnements logistiques</a></li>
+            <li class="breadcrumb-item active">Modification</li>
+        </ol>
     <div class="container">
         <div class="row">
             <div class="modal-content">
@@ -142,12 +143,20 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <x-jet-input placeholder="Article" id="idArticle" class="block mt-1 w-full"
-                                        type="number" name="idArticle" value="{{ old('idArticle',$conditionnementLogistique->idArticle) }}" required />
+                                    <x-jet-label for="idArticle" value="{{ __('Article') }}" />
+                                    <select name="idArticle"  class="form-select"
+                                        aria-label="Default select example">
+                                        @forelse ($articles as $article)
+                                        <option value="{{$article->id}}"
+                                            {{(old('idArticle',$conditionnementLogistique->idArticle)==$article->id)? 'selected':''}}>
+                                            {{$article->codeArticle}}
+                                        </option> 
+                                        @empty
+                                          vide  
+                                        @endforelse
+                                    </select>
                                 </div>
                             </div>
-
-
                         </div>
                         <div class="row">
                             <div class="col-md-4">
@@ -197,7 +206,7 @@
                                 <div class="form-group">
                                     <x-jet-label for="Libelle" value="{{ __('Libellé') }}" />
                                     <textarea class="form-control" id="Libelle" rows="6" type="textarea" name="Libelle"
-                                        value="{{old('Libelle',$conditionnementLogistique->Libelle)}}" required></textarea>
+                                    required>{{old('Libelle',$conditionnementLogistique->Libelle)}}</textarea>
 
                                 </div>
                             </div>

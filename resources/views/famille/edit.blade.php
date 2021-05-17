@@ -1,15 +1,18 @@
 <x-app-layout>
 
-    <x-slot name="header">
+   
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Modifier une famille') }}
+            Modification de la famille  {{$famille->name}}
         </h2>
         @if (session('msg'))
             <h3 style="color: green">
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('famille.index')}}">Familles</a></li>
+            <li class="breadcrumb-item active">Modification</li>
+          </ol>
 
     <div class="container">
         <div class="row">
@@ -68,7 +71,7 @@
                                 <div class="form-group">
                                     <x-jet-label for="Libelle" value="{{ __('Libellé') }}" />
                                     <textarea class="form-control" id="Libelle" rows="8" type="textarea" name="Libelle"
-                                    value="{{old('Libelle',$famille->Libelle)}}" required></textarea>
+                                    required>{{old('Libelle',$famille->Libelle)}}</textarea>
                                 </div>
                             </div>
 

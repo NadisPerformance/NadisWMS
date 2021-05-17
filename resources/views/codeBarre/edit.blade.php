@@ -1,16 +1,17 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Modifier une code à Barre') }}
+            Modifier le code à barre  {{$codeBarre->value}}
         </h2>
         @if (session('msg'))
             <h3 style="color: green">
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('codeBarre.index')}}">Codes à barre</a></li>
+            <li class="breadcrumb-item active">Modification</li>
+        </ol>
     <div class="container">
         <div class="row">
             <div class="modal-content">
@@ -30,9 +31,18 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-jet-input placeholder="Conditionnement Logistique" id="idConditionnementLogistique" class="block mt-1 w-full" type="number"
-                                    name="idConditionnementLogistique" value="{{old('idConditionnementLogistique',$codeBarre->idConditionnementLogistique)}}" required />
-
+                                    <x-jet-label for="idConditionnementLogistique" value="{{ __('Famille Support') }}" />
+                                    <select name="idConditionnementLogistique"  class="form-select"
+                                        aria-label="Default select example">
+                                        @forelse ($conditionnementLogistiques as $conditionnementLogistique)
+                                        <option value="{{$conditionnementLogistique->id}}" 
+                                             {{(old('idConditionnementLogistique',$codeBarre->idConditionnementLogistique)==$conditionnementLogistique->id)? 'selected':''}}>
+                                             {{$conditionnementLogistique->code}}
+                                        </option> 
+                                        @empty
+                                          <option value="">Vide</option>  
+                                        @endforelse                                      
+                                    </select>
                                 </div>
                             </div>
                         </div>

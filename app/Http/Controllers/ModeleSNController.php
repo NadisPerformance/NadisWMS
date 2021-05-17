@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ModeleSN;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ModeleSNController extends Controller
 {
@@ -44,9 +45,11 @@ class ModeleSNController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {return view('modeleSN.create');
-        
+    public function create(Request $request)
+    {
+        return view('modeleSN.create', [
+        'articles' => DB::table('articles')->select('id', 'codeArticle')->get(),
+        ]); 
     }
 
     /**
@@ -84,7 +87,9 @@ class ModeleSNController extends Controller
     public function edit(modeleSN $modeleSN)
     {
         
-        return view('modeleSN.edit',['modeleSN'=>$modeleSN]);
+        return view('modeleSN.edit',['modeleSN'=>$modeleSN,
+        'articles' => DB::table('articles')->select('id', 'codeArticle')->get(),
+        ]); 
     }
 
     /**

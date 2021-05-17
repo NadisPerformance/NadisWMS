@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ModelePreparation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ModelePreparationController extends Controller
 {
@@ -22,9 +24,11 @@ class ModelePreparationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {return view('modelePreparation.create');
-        
+    public function create(Request $request)
+    {
+        return view('modelePreparation.create', [
+        'conditionnementLogistiques' => DB::table('conditionnement_logistiques')->select('id', 'code')->get(),
+        ]); 
     }
 
     /**
@@ -62,7 +66,9 @@ class ModelePreparationController extends Controller
     public function edit(modelePreparation $modelePreparation)
     {
         
-        return view('modelePreparation.edit',['modelePreparation'=>$modelePreparation]);
+        return view('modelePreparation.edit',['modelePreparation'=>$modelePreparation,
+        'conditionnementLogistiques' => DB::table('conditionnement_logistiques')->select('id', 'code')->get(),
+        ]); 
     }
 
     /**

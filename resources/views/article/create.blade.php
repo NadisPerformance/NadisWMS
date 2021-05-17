@@ -1,14 +1,17 @@
 <x-app-layout>
-    <x-slot name="header">
+   
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Ajouter une article') }}
         </h2>
 
-    </x-slot>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('article.index')}}">Articles</a></li>
+            <li class="breadcrumb-item active">Création</li>
+        </ol> 
 
     <div class="container" >
         <div class="row" >
-            <div class="modal-content">
+            
                 
                 <form action="{{ route('article.store') }}" method="POST">
                     @csrf
@@ -26,7 +29,7 @@
                     </div>
                 
                 </form>
-            </div>
+          
         </div>
     </div>
 </x-app-layout>

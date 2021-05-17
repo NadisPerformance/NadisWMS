@@ -1,6 +1,5 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Ajouter un modele de préparation') }}
         </h2>
@@ -9,8 +8,10 @@
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('modelePreparation.index')}}">Modeles de préparation</a></li>
+            <li class="breadcrumb-item active">Création</li>
+        </ol> 
     <div class="container">
         <div class="row">
             <div class="modal-content">
@@ -23,9 +24,15 @@
                             
                             <div class="col-md">
                                 <div class="form-group">
-                                    <x-jet-input placeholder="Conditionnement Logistique" id="idConditionnementLogistique" class="block mt-1 w-full" type="number"
-                                    name="idConditionnementLogistique" value="{{old('idConditionnementLogistique')}}" required />
-
+                                    <x-jet-label for="idConditionnementLogistique" value="{{ __('Conditionnement logistique') }}" />
+                                    <select name="idConditionnementLogistique"  class="form-select"
+                                        aria-label="Default select example">
+                                        @forelse ($conditionnementLogistiques as $conditionnementLogistique)
+                                        <option value="{{$conditionnementLogistique->id}}">{{$conditionnementLogistique->code}}</option> 
+                                        @empty
+                                          <option value="">Vide</option>  
+                                        @endforelse                                    
+                                    </select>
                                 </div>
                             </div>
                         </div>

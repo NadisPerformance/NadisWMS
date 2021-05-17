@@ -1,7 +1,7 @@
 <x-app-layout>
-  <x-slot name="header">
+ 
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('List modeleStockages') }}
+          {{ __('Liste des modéles de stockage') }}
       </h2>
       <button>
         <a class="btn btn-success btn-icon " href="{{route('modeleStockage.create')}}">Ajouter une modeleStockage</a>
@@ -11,49 +11,56 @@
        {{session()->get('msg')}}
       </h3>
     @endif
-  </x-slot>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item"><a href="{{route('modeleStockage.index')}}">Modéles de stockage</a></li>
+    </ol>
 
   <div class="container">
-
-       
-    <table class="table table-hover">
+    <table class="table table-bordered"  id="table">
       <thead>
         <tr>
           <th>ID</th>
-          <th></th>
-          <th></th>
-          <th></th>
-         
+          <th>Action</th>
         </tr>
       </thead>
-      @forelse  ($modeleStockages as $modeleStockage)
+      
       <tbody>
-        
+        @forelse  ($modeleStockages as $modeleStockage)
         <tr>
           <td>{{$modeleStockage->id}}</td>
           <td>
-           <button>
-            <a class="btn btn-success btn-icon " href="{{route('modeleStockage.show',['modeleStockage'=>$modeleStockage->id])}}">Plus</a>
-           </button>
-          </td>
-       
-          <td> 
-          <button>
-          <a class="btn btn-warning " href="{{route('modeleStockage.edit',['modeleStockage'=>$modeleStockage->id])}}">Modifier</a>
-          </button></td>
-          <td>
-            <form action="{{route('modeleStockage.destroy',['modeleStockage'=>$modeleStockage->id])}}" method="POST">
-             @csrf
-             @method('DELETE')
-             <button type="input" name="submit"  class="btn btn-danger btn-icon" onClick="return confirm('Supprimer {{$modeleStockage->name}} !? ')"> Supprimer</button>
+                                
+            <button title="Détails" >
+                <a class="btn btn-primary " href="{{ route('modeleStockage.show', ['modeleStockage' => $modeleStockage->id]) }}">
+                  +
+                  </a>
+            </button>
+
+            <button  class="btn btn-warning ">
+                
+                <a title="Modifier le modéle de stockage d'id {{ $modeleStockage->id }}" href="{{ route('modeleStockage.edit', ['modeleStockage' => $modeleStockage->id]) }}">
+                    <i class="fa fa-edit"></i>Modifier
+                </a>
+
+            </button>
+            <form style="display: inline;"></form>
+            <form style="display: inline;" action="{{ route('modeleStockage.destroy', ['modeleStockage' => $modeleStockage->id]) }}"
+                    method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="input" name="submit" class="btn btn-danger" title="Supprimer le modele de stockage d'id{{ $modeleStockage->id }}"
+                        onClick="return confirm('Suppriment le modele de stockage')">
+                        <i class="fa fa-trash"></i>Supprimer
+                    </button>
             </form>
-         </td>
-     
+            
+</td>
         </tr>
-      </tbody>
-      @empty
+        @empty
     <p>Vide!</p>
-@endforelse  
+@endforelse 
+      </tbody>
+       
 
     </table>
 

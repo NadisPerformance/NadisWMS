@@ -1,61 +1,69 @@
 <x-app-layout>
-  <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('List marques') }}
+          {{ __('Liste des marques') }}
       </h2>
-      <button>
-        <a class="btn btn-success btn-icon " href="{{route('marque.create')}}">Ajouter une marque</a>
-       </button>
+     
       @if (session('msg'))
       <h3 style="color: green">
        {{session()->get('msg')}}
       </h3>
     @endif
-  </x-slot>
-
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">Marques</li>
+  </ol> 
   <div class="container">
-
+    <button>
+      <a class="btn btn-success btn-icon " href="{{route('marque.create')}}">Ajouter une marque</a>
+     </button>
        
-    <table class="table table-hover">
+    <table class="table table-bordered" id="table">
       <thead>
         <tr>
           <th>ID</th>
           <th>Nom</th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th>Actions</th>
+          
          
         </tr>
       </thead>
-      @forelse  ($marques as $marque)
       <tbody>
-        
+        @forelse  ($marques as $marque)
         <tr>
           <td>{{$marque->id}}</td>
           <td>{{$marque->name}}</td>
           <td>
-           <button>
-            <a class="btn btn-success btn-icon " href="{{route('marque.show',['marque'=>$marque->id])}}">Plus</a>
-           </button>
-          </td>
-       
-          <td> 
-          <button>
-          <a class="btn btn-warning " href="{{route('marque.edit',['marque'=>$marque->id])}}">Modifier</a>
-          </button></td>
-          <td>
-            <form action="{{route('marque.destroy',['marque'=>$marque->id])}}" method="POST">
-             @csrf
-             @method('DELETE')
-             <button type="input" name="submit"  class="btn btn-danger btn-icon" onClick="return confirm('Supprimer {{$marque->name}} !? ')"> Supprimer</button>
+                                
+            <button title="Détails" >
+                <a class="btn btn-primary " href="{{ route('marque.show', ['marque' => $marque->id]) }}">
+                  +
+                  </a>
+            </button>
+
+            <button  class="btn btn-warning ">
+                
+                <a title="Modifier la marque  {{ $marque->name }}" href="{{ route('marque.edit', ['marque' => $marque->id]) }}">
+                    <i class="fa fa-edit"></i>Modifier
+                </a>
+
+            </button>
+            <form style="display: inline;"></form>
+            <form style="display: inline;" action="{{ route('marque.destroy', ['marque' => $marque->id]) }}"
+                    method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="input" name="submit" class="btn btn-danger" title="Supprimer la marque {{ $marque->name }}"
+                        onClick="return confirm('Supprimer la marque?')">
+                        <i class="fa fa-trash"></i>Supprimer
+                    </button>
             </form>
-         </td>
-     
+            
+        </td>
         </tr>
-      </tbody>
-      @empty
+        @empty
     <p>Vide!</p>
 @endforelse  
+      </tbody>
+      
 
     </table>
 

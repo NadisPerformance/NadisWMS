@@ -1,14 +1,17 @@
   
   <x-app-layout>
-    <x-slot name="header">
+
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{$familleQuarantaine->name}}
+          Détails la famille de quarantaine d'id : {{$familleQuarantaine->id}}
         </h2>
-    </x-slot>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item"><a href="{{route('familleQuarantaine.index')}}">Familles de quarantaine</a></li>
+          <li class="breadcrumb-item active">Détails</li>
+        </ol>
 
     
     <div class="container">           
-      <table class="table table-hover">
+      <table class="table table-bordered" >
         <thead>
           <tr>
             <th>ID</th>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Famille;
 use App\Models\ConditionnementLogistique;
 use Illuminate\Http\Request;
 
@@ -103,8 +104,10 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
+        
         return view('article.create');
     }
 
@@ -275,8 +278,14 @@ class ArticleController extends Controller
      */
     public function destroy(Request $request,Article $article)
     {
-        $article->delete();
-        $request->session()->flash('msg', "vous avez supprimer la categorie :  $article->codeArticle");
+        if($request->input($article->id)){
+            if($article->etat=="A supprimer"){
+                $article->delete();
+                $request->session()->flash('msg', "vous avez supprimer l'article du code :  $article->codeArticle");
+            }else{
+                $request->session()->flash('msg', "Vous pouvez pas supprimer les articles qui sont pas en l'état A supprimer");
+                }
+        }
         return redirect()->route('article.index');
     }
 }

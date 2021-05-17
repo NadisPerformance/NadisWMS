@@ -1,16 +1,17 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Ajouter une familleColisage') }}
+            {{ __('Ajouter une famille de colisage') }}
         </h2>
         @if (session('msg'))
             <h3 style="color: green">
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('familleColisage.index')}}">Familles de colisage</a></li>
+            <li class="breadcrumb-item active">Création</li>
+          </ol>
     <div class="container">
         <div class="row">
             <div class="modal-content">
@@ -67,7 +68,7 @@
                                 <div class="form-group">
                                     <x-jet-label for="Libelle" value="{{ __('Libellé') }}" />
                 <textarea  class="form-control" id="Libelle" rows="8"
-                    type="textarea" name="Libelle" :value="old('Libelle')" required >
+                    type="textarea" name="Libelle"  required >{{old('Libelle')}}
                   </textarea>
                                 </div>
                             </div>

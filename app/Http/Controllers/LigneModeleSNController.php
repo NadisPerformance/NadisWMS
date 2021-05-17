@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LigneModeleSN;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LigneModeleSNController extends Controller
 {
@@ -38,9 +39,12 @@ class LigneModeleSNController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {return view('ligneModeleSN.create');
-        
+    public function create(Request $request)
+    {
+        return view('ligneModeleSN.create', [
+        'familleSNs' => DB::table('famille_s_n_s')->select('id', 'code')->get(),
+        'modeleSNs' => DB::table('modele_s_n_s')->select('id')->get(),
+        ]); 
     }
 
     /**
@@ -78,7 +82,10 @@ class LigneModeleSNController extends Controller
     public function edit(ligneModeleSN $ligneModeleSN)
     {
         
-        return view('ligneModeleSN.edit',['ligneModeleSN'=>$ligneModeleSN]);
+        return view('ligneModeleSN.edit',['ligneModeleSN'=>$ligneModeleSN,
+        'familleSNs' => DB::table('famille_s_n_s')->select('id', 'code')->get(),
+        'ModeleSNs' => DB::table('modele_s_n_s')->select('id')->get(),
+        ]); 
     }
 
     /**

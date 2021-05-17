@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
+   
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Liste des articles') }}
         </h2>
@@ -24,7 +24,9 @@
                 {{ session()->get('msgeee') }}
             </h3>
         @endif
-    </x-slot>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Articles</li>
+        </ol> 
 
     <div class="container">
     <form action="{{ route('actionArticle') }}" method="GET">
@@ -40,7 +42,7 @@
                 onClick="return confirm('Supprimer  !? ')"> Supprimer</button>
             
             
-        <table class="table table-hover" id="table" >
+        <table class="table table-bordered" id="table" >
             <thead>
                 <tr>
                     <th><input type="checkbox" onclick="checkAll(this)"></th>
@@ -61,40 +63,32 @@
                         <td>{{ $article->codeArticle }}</td>
                         <td>{{ $article->etat }}</td>
                         <td>
-                          <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <button>
-                                        <a class="btn btn-success btn-icon "
-                                            href="{{ route('article.show', ['article' => $article->id]) }}">Plus</a>
-                                    </button>
+                            <button title="Détails" >
+                                <a class="btn btn-primary " href="{{ route('article.show', ['article' => $article->id]) }}">
+                                  +
+                                  </a>
+                            </button>
 
-                                  </div>
-                                </div>
-                                <div class="col-md-4">
-                                  <div class="form-group">
-                                    <button>
-                                        <a class="btn btn-warning "
-                                            href="{{ route('article.edit', ['article' => $article->id]) }}">Modifier</a>
-                                    </button>
-                                  </div>
-                                </div>
-                                <div class="col-md-4">
-                                  <div class="form-group">
+                            <button  class="btn btn-warning ">
+                                
+                                <a title="Modifier article du code {{ $article->codeArticle }}" href="{{ route('article.edit', ['article' => $article->id]) }}">
+                                    <i class="fa fa-edit"></i>Modifier
+                                </a>
+        
+                            </button>
+                            <form style="display: inline;"></form>
                                     @if ($article->etat == 'A supprimer')
-                                        <form action="{{ route('article.destroy', ['article' => $article->id]) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="input" name="submit" class="btn btn-danger btn-icon"
-                                                onClick="return confirm('Supprimer {{ $article->codeArticle }} !? ')">
-                                                Supprimer</button>
-                                        </form>
+                                    <form style="display: inline;" action="{{ route('article.destroy', ['article' => $article->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="input" name="submit" class="btn btn-danger" title="Supprimer article du code {{ $article->codeArticle }}"
+                                            onClick="return confirm('Supprimer {{ $article->codeArticle }} !? ')">
+                                            <i class="fa fa-trash"></i>Supprimer
+                                        </button>
+                                    </form>
                                     @endif
-                                  </div>
-                                </div>
-                               
-                          </div>
+                                  
                         </td>
 
                     </tr>

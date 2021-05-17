@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ConditionnementLogistique;
 use App\Models\CodeBarre;
+use Illuminate\Support\Facades\DB;
 use App\Models\ModelePreparation;
 
 use Illuminate\Http\Request;
@@ -43,9 +44,11 @@ class ConditionnementLogistiqueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('conditionnementLogistique.create');
+        return view('conditionnementLogistique.create', [
+        'articles' => DB::table('articles')->select('id', 'codeArticle')->get(),
+        ]); 
     }
 
     /**
@@ -71,7 +74,9 @@ class ConditionnementLogistiqueController extends Controller
      */
     public function show(conditionnementLogistique $conditionnementLogistique)
     {
-        return view('conditionnementLogistique.show', ['conditionnementLogistique' => $conditionnementLogistique]);
+        return view('conditionnementLogistique.show', [
+        'conditionnementLogistique' => $conditionnementLogistique
+        ]); 
     }
 
     /**
@@ -83,7 +88,10 @@ class ConditionnementLogistiqueController extends Controller
     public function edit(conditionnementLogistique $conditionnementLogistique)
     {
 
-        return view('conditionnementLogistique.edit', ['conditionnementLogistique' => $conditionnementLogistique]);
+        return view('conditionnementLogistique.edit', [
+            'conditionnementLogistique' => $conditionnementLogistique,
+            'articles' => DB::table('articles')->select('id', 'codeArticle')->get(),
+        ]); 
     }
 
     /**

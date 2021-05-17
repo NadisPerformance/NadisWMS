@@ -1,14 +1,19 @@
   
   <x-app-layout>
-    <x-slot name="header">
+  
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{$modeleStockage->name}}
+          Détails de modele de stockage d'id : {{$modeleStockage->id}}
         </h2>
-    </x-slot>
+   
 
-    
-    <div class="container">           
-      <table class="table table-hover">
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item"><a href="{{route('modeleStockage.index')}}">Modéles de stockage</a></li>
+      <li class="breadcrumb-item active">Détails</li>
+    </ol>
+
+
+<div class="container">           
+  <table class="table table-bordered" >
         <thead>
           <tr>
             <th>ID</th>

@@ -1,7 +1,7 @@
-<div class='form-control'  >
+
     <fieldset >
         <div class="modal-header">
-            <h4 class="modal-title">Informations générales</h4>
+            <h1 class="modal-title">Informations générales</h1>
         </div>
 <div class="modal-body">
     <div class="row">
@@ -21,12 +21,12 @@
         <div class="col-md-4">
             <div class="form-group">
                 <x-jet-label for="etat" value="{{ __('Etat') }}" />
-                <select name="etat" value="{{old('etat',$article->etat ?? null)}}" class="form-select"
+                <select name="etat"  class="form-select"
                     aria-label="Default select example">
-                    <option value="Créer">Créer</option>
-                    <option value="Valide">Valide</option>
-                    <option value="Invalide">Invalide</option>
-                    <option value="A supprimer">A supprimer</option>
+                    <option value="Créer" {{(old('etat',$article->etat ?? null)=='Créer')? 'selected':''}}>Créer</option>
+                    <option value="Valide" {{(old('etat',$article->etat ?? null)=='Valide')? 'selected':''}}>Valide</option>
+                    <option value="Invalide" {{(old('etat',$article->etat ?? null)=='Invalide')? 'selected':''}}>Invalide</option>
+                    <option value="A supprimer" {{(old('etat',$article->etat ?? null)=='A supprimer')? 'selected':''}}>A supprimer</option>
                 </select>
             </div>
         </div>
@@ -52,13 +52,14 @@
         <div class="col-md-4">
             <div class="form-group">
                 <x-jet-label for="lectureCodeBarre" value="{{ __('Lecture code de Barre') }}" />
-                <select  name="lectureCodeBarre" value="{{old('lectureCodeBarre',$article->lectureCodeBarre ?? null)}}" class="form-select"
+                <select  name="lectureCodeBarre"  class="form-select"
                     aria-label="Default select example">
-                    <option value="Oui">Oui</option>
-                    <option value="Oui sauf si référence unique à l’emplacement">Oui sauf si
+                    <option value="Oui" {{(old('lectureCodeBarre',$article->lectureCodeBarre ?? null)=='Oui')? 'selected':''}}>Oui</option>
+                    <option value="Oui sauf si référence unique à l’emplacement"
+                    {{(old('lectureCodeBarre',$article->lectureCodeBarre ?? null)=='Oui sauf si référence unique à l’emplacement')? 'selected':''}}>Oui sauf si
                         référence
                         unique à l’emplacement</option>
-                    <option value="Non">Non</option>
+                    <option value="Non"{{(old('lectureCodeBarre',$article->lectureCodeBarre ?? null)=='Non')? 'selected':''}}>Non</option>
                 </select>
             </div>
         </div>
@@ -82,11 +83,11 @@
         <div class="col-md-4">
             <div class="form-group">
                 <x-jet-label for="rotation" value="{{ __('Rotation') }}" />
-                <select  name="rotation" value="{{old('rotation',$article->rotation ?? null)}}" class="form-select"
+                <select  name="rotation"  class="form-select"
                     aria-label="Default select example">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
+                    <option value="A"  {{(old('rotation',$article->rotation ?? null)=='A')? 'selected':''}}>A</option>
+                    <option value="B"  {{(old('rotation',$article->rotation ?? null)=='B')? 'selected':''}}>B</option>
+                    <option value="C"  {{(old('rotation',$article->rotation ?? null)=='C')? 'selected':''}}>C</option>
                 </select>
             </div>
         </div>
@@ -141,8 +142,9 @@
             <div class="form-group">
                 <x-jet-label for="instructions" value="{{ __('Instructions') }}" />
                 <textarea  class="form-control" id="instructions" rows="12"
-                    type="textarea" name="instructions" value="{{old('instructions',$article->instructions ?? null)}}" required >
-                  </textarea>
+                    type="textarea" name="instructions" value="" required >
+                    {{old('instructions',$article->instructions ?? null)}}
+                </textarea>
         </div>
     </div>
 
@@ -174,7 +176,7 @@
                 <div class="form-group">
                     <x-jet-label for="libelleLong" value="{{ __('Libelle Long') }}" />
                     <textarea class="form-control" id="libelleLong" rows="5" type="textarea" name="libelleLong"
-                    value="{{old('libelleLong',$article->libelleLong  ?? null)}}" required></textarea>
+                    value="" required>{{old('libelleLong',$article->libelleLong  ?? null)}}</textarea>
                 </div>
             </div>
         </div>
@@ -184,4 +186,3 @@
 
 
 </fieldset>
-</div>

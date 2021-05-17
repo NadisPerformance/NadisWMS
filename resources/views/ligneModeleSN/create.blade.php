@@ -1,6 +1,5 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Ajouter une ligne') }}
         </h2>
@@ -9,8 +8,10 @@
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('ligneModeleSN.index')}}">Lignes</a></li>
+            <li class="breadcrumb-item active">Création</li>
+        </ol> 
     <div class="container">
         <div class="row">
             <div class="modal-content">
@@ -33,15 +34,28 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-jet-input placeholder="Famille de S/N " id="idFamilleSN" class="block mt-1 w-full" type="number"
-                                    name="idFamilleSN" value="{{old('idFamilleSN')}}" required  />
+                                    <x-jet-label for="idFamilleSN" value="{{ __('Famille de SN') }}" />
+                                    <select name="idFamilleSN"  class="form-select"
+                                        aria-label="Default select example">
+                                        @forelse ($familleSNs as $familleSN)
+                                        <option value="{{$familleSN->id}}">{{$familleSN->code}}</option> 
+                                        @empty
+                                          <option value="">vide</option>  
+                                        @endforelse                                    
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-
-                                    <x-jet-input placeholder="ID modèle" id="idModeleSN" class="block mt-1 w-full" type="number"
-                                        name="idModeleSN" value="{{old('idModeleSN')}}" required  />
+                                    <x-jet-label for="idModeleSN" value="{{ __('Modele de SN') }}" />
+                                    <select name="idModeleSN"  class="form-select"
+                                        aria-label="Default select example">
+                                        @forelse ($modeleSNs as $modeleSN)
+                                        <option value="{{$modeleSN->id}}">{{$modeleSN->id}}</option> 
+                                        @empty
+                                        <option value="">vide</option>  
+                                        @endforelse                                    
+                                    </select>
                                 </div>
                             </div>
 

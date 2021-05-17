@@ -1,16 +1,17 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Ajouter une prix') }}
+            {{ __('Ajouter un prix') }}
         </h2>
         @if (session('msg'))
             <h3 style="color: green">
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('prix.index')}}">Prixs</a></li>
+            <li class="breadcrumb-item active">Création</li>
+        </ol> 
     <div class="container">
         <div class="row">
             <div class="modal-content">
