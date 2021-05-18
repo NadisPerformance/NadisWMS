@@ -1,16 +1,17 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Modifier une categorie') }}
+            Modification du categorie de value {{$categorie->value}}
         </h2>
         @if (session('msg'))
             <h3 style="color: green">
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('categorie.index')}}">Categories</a></li>
+            <li class="breadcrumb-item active">Modification</li>
+          </ol>
     <div class="container">
         <div class="row">
             <div class="modal-content">
@@ -25,7 +26,7 @@
                                 <div class="form-group">
 
                                     <x-jet-input placeholder="Value" id="value" class="block mt-1 w-full" type="number"
-                                        name="value" value="{{$categorie->value}}" required />
+                                        name="value" value="{{old('value',$categorie->value)}}" required />
                                 </div>
                             </div>
                         </div>
@@ -35,7 +36,7 @@
                                 <div class="form-group">
                                     <x-jet-label for="discription" value="{{ __('Description') }}" />
                                     <textarea class="form-control" id="discription" rows="8" type="textarea" name="discription"
-                                    value="{{$categorie->discription}}" required></textarea>
+                                    value="" required>{{old('discription',$categorie->discription)}}</textarea>
 
                                 </div>
                             </div>

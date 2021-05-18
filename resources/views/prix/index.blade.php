@@ -15,7 +15,7 @@
 
     <button>
       <a class="btn btn-success btn-icon " href="{{route('prix.create')}}">Ajouter une prix</a>
-     </button>
+     </button>ER
     <table class="table table-bordered" id="table">
       <thead>
         <tr>

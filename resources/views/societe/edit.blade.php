@@ -1,16 +1,17 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Modifier une societe') }}
+            Modification la societe {{$societe->name}}
         </h2>
         @if (session('msg'))
             <h3 style="color: green">
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('societe.index')}}">Societes</a></li>
+            <li class="breadcrumb-item active">Modification</li>
+          </ol>
     <div class="container">
         <div class="row">
             <div class="modal-content">
@@ -19,8 +20,7 @@
                 <form action="{{ route('societe.update', ['societe' => $societe->id]) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <x-jet-input placeholder="Nom" id="name" class="block mt-1 w-full" type="text"
-                                         :value="old('name')"  />
+                    <x-jet-input placeholder="Nom" id="name" class="block mt-1 w-full" type="text" />
                     @if ($errors->any())
                         <ul>
                             @foreach ($errors->all() as $err)

@@ -1,62 +1,66 @@
 <x-app-layout>
-  <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('List categories') }}
+          {{ __('Liste des categories') }}
       </h2>
-      <button>
-        <a class="btn btn-success btn-icon " href="{{route('categorie.create')}}">Ajouter une categorie</a>
-       </button>
+      
       @if (session('msg'))
       <h3 style="color: green">
        {{session()->get('msg')}}
       </h3>
     @endif
-  </x-slot>
-
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">Categories</li>
+  </ol> 
   <div class="container">
 
-       
-    <table class="table table-hover">
+    <button>
+      <a class="btn btn-success btn-icon " href="{{route('categorie.create')}}">Ajouter une categorie</a>
+     </button>       
+    <table class="table table-bordered" id="table">
       <thead>
         <tr>
           <th>ID</th>
           <th>Value</th>
-          <th></th>
-          <th></th>
-          <th></th>
-         
+          <th>Actions</th>
         </tr>
       </thead>
-      @forelse  ($categories as $categorie)
       <tbody>
-        
+        @forelse  ($categories as $categorie)
         <tr>
           <td>{{$categorie->id}}</td>
           <td>{{$categorie->value}}</td>
           <td>
-           <button>
-            <a class="btn btn-success btn-icon " href="{{route('categorie.show',['categorie'=>$categorie->id])}}">Plus</a>
-           </button>
-          </td>
-       
-          <td> 
-          <button>
-          <a class="btn btn-warning " href="{{route('categorie.edit',['categorie'=>$categorie->id])}}">Modifier</a>
-          </button></td>
-          <td>
-            <form action="{{route('categorie.destroy',['categorie'=>$categorie->id])}}" method="POST">
-             @csrf
-             @method('DELETE')
-             <button type="input" name="submit"  class="btn btn-danger btn-icon" onClick="return confirm('Supprimer {{$categorie->name}} !? ')"> Supprimer</button>
-            </form>
-         </td>
-     
-        </tr>
-      </tbody>
-      @empty
-    <p>Vide!</p>
-@endforelse  
+                                
+            <button title="Détails" >
+                <a class="btn btn-primary " href="{{ route('categorie.show', ['categorie' => $categorie->id]) }}">
+                  +
+                  </a>
+            </button>
 
+            <button  class="btn btn-warning ">
+                
+                <a title="Modifier le categorie de value {{ $categorie->value }}" href="{{ route('categorie.edit', ['categorie' => $categorie->id]) }}">
+                    <i class="fa fa-edit"></i>Modifier
+                </a>
+
+            </button>
+            <form style="display: inline;"></form>
+            <form style="display: inline;" action="{{ route('categorie.destroy', ['categorie' => $categorie->id]) }}"
+                    method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="input" name="submit" class="btn btn-danger" title="Supprimer le categorie de value {{ $categorie->value }}"
+                        onClick="return confirm('Supprimer le categorie?')">
+                        <i class="fa fa-trash"></i>Supprimer
+                    </button>
+            </form>
+            
+        </td>
+        </tr>
+        @empty
+         <p>Vide!</p>
+        @endforelse  
+      </tbody>
     </table>
 
   </div>

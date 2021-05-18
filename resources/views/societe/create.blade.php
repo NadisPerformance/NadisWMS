@@ -1,6 +1,5 @@
 <x-app-layout>
 
-    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Ajouter une societe') }}
         </h2>
@@ -9,8 +8,10 @@
                 {{ session()->get('msg') }}
             </h3>
         @endif
-    </x-slot>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="{{route('societe.index')}}">Societes</a></li>
+            <li class="breadcrumb-item active">Création</li>
+          </ol>
     <div class="container">
         <div class="row">
             <div class="modal-content">
@@ -18,8 +19,7 @@
 
                 <form action="{{ route('societe.store') }}" method="POST">
                     @csrf
-                    <x-jet-input placeholder="Nom" id="name" class="block mt-1 w-full" type="text"
-                                         :value="old('name')"  />
+                    <x-jet-input placeholder="Nom" id="name" class="block mt-1 w-full" type="text" />
                     @if ($errors->any())
                         <ul>
                             @foreach ($errors->all() as $err)

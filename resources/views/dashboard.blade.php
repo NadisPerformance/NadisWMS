@@ -5,11 +5,11 @@
                       
                             
     <h1 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Dashboard') }}
+        {{ __('Accuiel') }}
     </h1>
 
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Accuiel</li>
                         </ol> 
         <div class="row">
             <div class="col-xl-3 col-md-6">
