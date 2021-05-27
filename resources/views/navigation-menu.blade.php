@@ -225,7 +225,7 @@
                         <div class="sb-sidenav-menu-heading">CŒUR</div>
                         <a class="nav-link" href="{{ route('dashboard') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Accuiel
+                            Accueil
                         </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         
@@ -289,8 +289,35 @@
                                         <x-jet-nav-link href="{{route('contacte.index')}}" :active="request()->routeIs('contacte.index')">
                                             {{ __('Contactes') }}
                                         </x-jet-nav-link>
+                                        
+                                    </nav>
+                                </div>
+                                <a class="nav-link collapsed" href="{{route('tier.index')}}" data-toggle="collapse" data-target="#pagesTier" aria-expanded="false" aria-controls="pagesTier">
+                                    Tiers
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesTier" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
                                         <x-jet-nav-link href="{{route('tier.index')}}" :active="request()->routeIs('tier.index')">
-                                            {{ __('Tiers') }}
+                                            {{ __('Liste') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('fournisseur.index')}}" :active="request()->routeIs('fournisseur.index')">
+                                            {{ __('Fournisseurs') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('client.index')}}" :active="request()->routeIs('client.index')">
+                                            {{ __('Clients') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('transporteur.index')}}" :active="request()->routeIs('transporteur.index')">
+                                            {{ __('Transporteurs') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('association.index')}}" :active="request()->routeIs('association.index')">
+                                            {{ __('Association Societé/Transporteur') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('planTransport.index')}}" :active="request()->routeIs('planTransport.index')">
+                                            {{ __('Plans des transports') }}
+                                        </x-jet-nav-link>
+                                        <x-jet-nav-link href="{{route('lignePlanTransport.index')}}" :active="request()->routeIs('lignePlanTransport.index')">
+                                            {{ __('Lignes des plans') }}
                                         </x-jet-nav-link>
                                     </nav>
                                 </div>

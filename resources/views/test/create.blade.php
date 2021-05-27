@@ -18,9 +18,17 @@
 
                 <form action="{{ route('test.store') }}" method="POST">
                     @csrf
-                    <div class="form-check form-switch">
-                        <input value=1 class="form-check-input" name="test" type="checkbox" id="test">
-                        <label class="form-check-label" for="test">test</label>
+                    <div class="col-md-4">
+                        <div class="form-check form-switch">
+                            <input value=1 @if(old('notionAlcool',$article->notionAlcool ?? null)==1) checked @endif class="form-check-input" name="notionAlcool" type="checkbox" id="notionAlcool" onClick="Affiche('notionAlcool','qte')">
+                            <label class="form-check-label" for="notionAlcool">Notion d'alcoole</label>
+                        </div>
+                        <div  style="display: none" id="qte">
+                            <div class="form-group">
+                                <x-jet-input placeholder="Quantité d'alcool" class="block mt-1 w-full" type="number" name="qteAlcool" id="qteAlcool"
+                                value="{{old('qteAlcool',$article->qteAlcool ?? null)}}"  />
+                            </div>
+                        </div>
                     </div>
                     @if ($errors->any())
                         <ul>
@@ -43,5 +51,16 @@
         </div>
     </div>
 
+    <script>
+        function Affiche(attr1, attr2) {
+            var x = document.getElementById(attr1);
+            var y = document.getElementById(attr2);
+            if (x.checked == true) {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        }
 
+    </script>
 </x-app-layout>

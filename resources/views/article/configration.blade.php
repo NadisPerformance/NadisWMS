@@ -92,10 +92,14 @@
             </div>
             
 
+
+
+
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-check form-switch">
-                        <input value=1 @if(old('notionAlcool',$article->notionAlcool ?? null)==1) checked @endif class="form-check-input" name="notionAlcool" type="checkbox" id="notionAlcool" onClick="Affiche('notionAlcool','qte')">
+                        <input value=1 @if(old('notionAlcool',$article->notionAlcool ?? null)==1) checked @endif
+                         class="form-check-input" name="notionAlcool" type="checkbox" id="notionAlcool" onClick="Affiche('notionAlcool','qte')">
                         <label class="form-check-label" for="notionAlcool">Notion d'alcoole</label>
                     </div>
                     <div  style="display: none" id="qte">
@@ -105,9 +109,19 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
                 <div class="col-md-4">
-                    <div class="form-check form-switch">
-                        <input value=1 @if(old('notionDangerosite',$article->notionDangerosite ?? null)==1) checked @endif class="form-check-input" name="notionDangerosite" type="checkbox"
+                    <div class="form-check form-switch"> 
+                        <input value=1 @if(old('notionDangerosite',$article->notionDangerosite ?? null)==1) checked @endif
+                         class="form-check-input" name="notionDangerosite" type="checkbox"
                              id="notionDangerosite" onClick="Affiche('notionDangerosite','ld')">
                         <label class="form-check-label" for="notionDangerosite">Notion de dangerosité</label>
                     </div>

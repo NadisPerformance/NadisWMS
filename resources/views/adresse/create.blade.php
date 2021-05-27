@@ -79,27 +79,16 @@
                                         name="siteInternet" value="{{old('siteInternet')}}" required  />
                                 </div>
                             </div>
+                          
                         </div>
 
                         <div class="row">
+
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-jet-label for="idSite" value="{{ __('Site') }}" />
-                                    <select name="idSite"  class="form-select"
-                                        aria-label="Default select example">
-                                        @forelse ($sites as $site)
-                                        <option value="{{$site->id}}">{{$site->code}}</option> 
-                                        @empty
-                                          vide  
-                                        @endforelse
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <x-jet-label for="idUser" value="{{ __('Personne référent') }}" />
                                     <select name="idUser"  class="form-select"
                                         aria-label="Default select example">
+                                        <option  value=null>Personne référent</option>
                                         @forelse ($users as $user)
                                         <option value="{{$user->id}}">{{$user->name}}</option> 
                                         @empty
@@ -108,8 +97,72 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select name="type"  class="form-select"
+                                        aria-label="Default select example" id="type" onchange="Affiche(this,'site','fournisseur','client')">
+                                        <option  value=null>Type</option>
+                                        <option  value="Forcé à « site »">Forcé à « site »</option>
+                                        <option value="Forcé à « fournisseur »">Forcé à « fournisseur »</option>
+                                        <option value="Forcé à « client »">Forcé à « client »</option>
+                                    </select>
+                                </div>
+                                
+                               
+                                
+                                
+                            </div>
+                            
                         </div>
-                
+                        <div style="display: none" id="fournisseur">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <x-jet-label for="idFournisseur" value="{{ __('Fournisseurs') }}" />
+                                    <select name="idFournisseur"  class="form-select"
+                                        aria-label="Default select example">
+                                        <option  value="">Choisé code du fournisseur </option>
+                                        @forelse ($fournisseurs as $fournisseur)
+                                        <option value="{{$fournisseur->id}}">{{$fournisseur->code}}</option> 
+                                        @empty
+                                        <option value="">vide</option>    
+                                        @endforelse
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: none" id="client">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <x-jet-label for="idClient" value="{{ __('Clients') }}" />
+                                    <select name="idClient"  class="form-select"
+                                        aria-label="Default select example">
+                                        <option  value="">Choisé code du client </option>
+                                        @forelse ($clients as $client)
+                                        <option value="{{$client->id}}">{{$client->code}}</option> 
+                                        @empty
+                                          <option value="">vide</option>  
+                                        @endforelse
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: none" id="site">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <x-jet-label for="idSite" value="{{ __('Site') }}" />
+                                    <select name="idSite"  class="form-select"
+                                        aria-label="Default select example">
+                                        <option  value="">Choisé code du site </option>
+                                        @forelse ($sites as $site)
+                                        <option value="{{$site->id}}">{{$site->code}}</option> 
+                                        @empty
+                                        <option value="">vide</option>    
+                                        @endforelse
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     @if ($errors->any())
                         <ul>
@@ -132,5 +185,27 @@
         </div>
     </div>
 
+    <script>
+     function Affiche(element,attr1,attr2,attr3)
+{
+    if(element.value == 'Forcé à « site »'){
+        document.getElementById(attr2).style.display ='none';
+        document.getElementById(attr3).style.display ='none';
+        document.getElementById(attr1).style.display ='block';
+    }else if(element.value == 'Forcé à « fournisseur »'){
+        document.getElementById(attr1).style.display ='none';
+        document.getElementById(attr3).style.display ='none';
+        document.getElementById(attr2).style.display ='block';
+    }else if(element.value == 'Forcé à « client »'){
+        document.getElementById(attr1).style.display ='none';
+        document.getElementById(attr3).style.display ='block';
+        document.getElementById(attr2).style.display ='none';
+    }else{
+        document.getElementById(attr1).style.display ='none';
+        document.getElementById(attr3).style.display ='none';
+        document.getElementById(attr2).style.display ='none';
+    }
+}
 
+    </script>
 </x-app-layout>

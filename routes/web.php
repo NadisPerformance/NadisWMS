@@ -25,6 +25,14 @@ use App\Http\Controllers\MagasinController;
 use App\Http\Controllers\EmplacementController;
 use App\Http\Controllers\FamilleSupportController;
 use App\Http\Controllers\SecteurController;
+use App\Http\Controllers\FournisseurController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\TransporteurController;
+use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\PlanTransportController;
+use App\Http\Controllers\LignePlanTransportController;
+use App\Http\Controllers\AffectationTransporteurController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,6 +78,14 @@ Route::resource('/magasin',MagasinController::class);
 Route::resource('/emplacement',EmplacementController::class);
 Route::resource('/familleSupport',FamilleSupportController::class);
 Route::resource('/secteur',SecteurController::class);
+Route::resource('/fournisseur',FournisseurController::class);
+Route::resource('/client',ClientController::class);
+Route::resource('/transporteur',TransporteurController::class);
+Route::resource('/association',AssociationController::class);
+Route::resource('/planTransport',PlanTransportController::class);
+Route::resource('/lignePlanTransport',LignePlanTransportController::class);
+Route::resource('/affectationTransporteur',AffectationTransporteurController::class);
+
 Route::get('/actionFamille',[FamilleController::class,'action'])->name('actionFamille');
 Route::get('/actionFamilleColisage',[FamilleColisageController::class,'action'])->name('actionFamilleColisage');
 Route::get('/actionArticle',[ArticleController::class,'action'])->name('actionArticle');
@@ -87,3 +103,10 @@ Route::get('/actionFamilleSupport',[FamilleSupportController::class,'action'])->
 Route::get('/actionAdresse',[AdresseController::class,'action'])->name('actionAdresse');
 Route::get('/actionTier',[TierController::class,'action'])->name('actionTier');
 Route::get('/actionContacte',[ContacteController::class,'action'])->name('actionContacte');
+Route::get('/actionFournisseur',[FournisseurController::class,'action'])->name('actionFournisseur');
+Route::get('/actionClient',[ClientController::class,'action'])->name('actionClient');
+Route::get('/actionTransporteur',[TransporteurController::class,'action'])->name('actionTransporteur');
+Route::get('/actionAssociation',[AssociationController::class,'action'])->name('actionAssociation');
+Route::get('/actionPlanTransport',[PlanTransportController::class,'action'])->name('actionPlanTransport');
+Route::get('/actionLignePlanTransport',[LignePlanTransportController::class,'action'])->name('actionLignePlanTransport');
+Route::get('/actionAffectationTransporteur',[AffectationTransporteurController::class,'action'])->name('actionAffectationTransporteur');

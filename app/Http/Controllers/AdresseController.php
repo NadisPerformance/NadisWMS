@@ -47,7 +47,10 @@ class AdresseController extends Controller
     {
         return view('adresse.create', [
         'users' => DB::table('users')->select('id', 'name')->get(),
-        'sites' => DB::table('sites')->select('id', 'code')->get()
+        'sites' => DB::table('sites')->select('id', 'code')->get(),
+        'fournisseurs' => DB::table('fournisseurs')->select('id', 'code')->get(),
+        'clients' => DB::table('clients')->select('id', 'code')->get(),
+
         ]); 
     }
 

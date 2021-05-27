@@ -15,6 +15,9 @@ class Societe extends Model
         
        ];
     public function articles(){
-        return $this->hasMany(\app\Models\Article::class);  
+        return $this->hasMany(Article::class,'idSociete');  
+    }
+    public function associations(){
+        return $this->hasMany(Association::class,'idSociete');  
     }
 }
