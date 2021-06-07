@@ -1,23 +1,39 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="bg-dark max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-info max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div style="width: 15%" class="flex-shrink-0 flex items-center">
+                <div style="margin-top: 2%">
+                    <button  class="btn btn-link btn-sm order-1 order-lg-0 bg-dark" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+                    </div>
+                <div style="margin-left: 5%; " class="flex-shrink-0 flex items-center">
                     <x-jet-nav-link  href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="navbar-brand">
-                        <img  src="{{asset('tamplet\assets\img\logowms.png')}}" alt=""> <b>NadisWMS</b> 
+                        <!--<img  src="{{asset('tamplet\assets\img\logo.jpg')}}" alt=""> -->
+                        <h1 style="size: 100ch">maGistor® (WMS)</h1>
                     </x-jet-nav-link>
                 </div>
-                <div style="margin-left: 15%;margin-top: 2%">
-                    <button  class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-                    </div>
+               
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{route('test.index')}}" :active="request()->routeIs('test.index')">
-                        {{ __('Test') }}
+                        {{ __('msg.Test') }}
                     </x-jet-nav-link>
+                </div>
+                <div style="background-color: white" class="inline-flex rounded-md">
+                  
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span> {{ Config::get('languages')[App::getLocale()]['display'] }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        @foreach (Config::get('languages') as $lang => $language)
+                            @if ($lang != App::getLocale())
+                                    <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"><span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span> {{$language['display']}}</a>
+                            @endif
+                        @endforeach
+                        </div>
+                  
                 </div>
             </div>
            
@@ -42,17 +58,17 @@
                                 <div class="w-60">
                                     <!-- Team Management -->
                                     <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Manage Team') }}
+                                        {{ __('msg.Manage Team') }}
                                     </div>
 
                                     <!-- Team Settings -->
                                     <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                                        {{ __('Team Settings') }}
+                                        {{ __('msg.Team Settings') }}
                                     </x-jet-dropdown-link>
 
                                     @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                                         <x-jet-dropdown-link href="{{ route('teams.create') }}">
-                                            {{ __('Create New Team') }}
+                                            {{ __('msg.Create New Team') }}
                                         </x-jet-dropdown-link>
                                     @endcan
 
@@ -60,7 +76,7 @@
 
                                     <!-- Team Switcher -->
                                     <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Switch Teams') }}
+                                        {{ __('msg.Switch Teams') }}
                                     </div>
 
                                     @foreach (Auth::user()->allTeams() as $team)
@@ -96,16 +112,16 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('msg.Manage Account') }}
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('msg.Profile') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                    {{ __('API Tokens') }}
+                                    {{ __('msg.API Tokens') }}
                                 </x-jet-dropdown-link>
                             @endif
 
@@ -118,7 +134,7 @@
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                          onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('msg.Log Out') }}
                                 </x-jet-dropdown-link>
                             </form>
                         </x-slot>
@@ -142,7 +158,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('msg.Dashboard') }}
             </x-jet-responsive-nav-link>
         </div>
 
@@ -164,12 +180,12 @@
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
+                    {{ __('msg.Profile') }}
                 </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
-                        {{ __('API Tokens') }}
+                        {{ __('msg.API Tokens') }}
                     </x-jet-responsive-nav-link>
                 @endif
 
@@ -180,7 +196,7 @@
                     <x-jet-responsive-nav-link href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                     this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('msg.Log Out') }}
                     </x-jet-responsive-nav-link>
                 </form>
 
@@ -189,17 +205,17 @@
                     <div class="border-t border-gray-200"></div>
 
                     <div class="block px-4 py-2 text-xs text-gray-400">
-                        {{ __('Manage Team') }}
+                        {{ __('msg.Manage Team') }}
                     </div>
 
                     <!-- Team Settings -->
                     <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
-                        {{ __('Team Settings') }}
+                        {{ __('msg.Team Settings') }}
                     </x-jet-responsive-nav-link>
 
                     @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                         <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
-                            {{ __('Create New Team') }}
+                            {{ __('msg.Create New Team') }}
                         </x-jet-responsive-nav-link>
                     @endcan
 
@@ -207,7 +223,7 @@
 
                     <!-- Team Switcher -->
                     <div class="block px-4 py-2 text-xs text-gray-400">
-                        {{ __('Switch Teams') }}
+                        {{ __('msg.Switch Teams') }}
                     </div>
 
                     @foreach (Auth::user()->allTeams() as $team)
@@ -219,13 +235,13 @@
     </div>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <nav class="sb-sidenav accordion sb-sidenav-info bg-info" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">CŒUR</div>
                         <a class="nav-link" href="{{ route('dashboard') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Accueil
+                            {{ __('msg.Dashboard')}}
                         </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         
@@ -243,22 +259,22 @@
                                 <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <x-jet-nav-link href="{{route('article.index')}}" :active="request()->routeIs('article.index')">
-                                            {{ __('Liste') }}
+                                            {{ __('msg.Liste') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('famille.index')}}" :active="request()->routeIs('famille.index')">
-                                            {{ __('Famille') }}
+                                            {{ __('msg.Famille') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('familleColisage.index')}}" :active="request()->routeIs('familleColisage.index')">
-                                            {{ __('Famille de colisage') }}
+                                            {{ __('msg.Famille de colisage') }}
                                         </x-jet-nav-link> 
                                         <x-jet-nav-link href="{{route('familleQuarantaine.index')}}" :active="request()->routeIs('familleQuarantaine.index')">
-                                            {{ __('Famille de quarantaine') }}
+                                            {{ __('msg.Famille de quarantaine') }}
                                         </x-jet-nav-link>       
                                         <x-jet-nav-link href="{{route('modeleStockage.index')}}" :active="request()->routeIs('modeleStockage.index')">
-                                            {{ __('Modele de stockages') }}
+                                            {{ __('msg.Modele de stockages') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('variant.index')}}" :active="request()->routeIs('variant.index')">
-                                            {{ __('Variant') }}
+                                            {{ __('msg.Variant') }}
                                         </x-jet-nav-link>         
                                     </nav>
                                 </div>
@@ -269,25 +285,25 @@
                                 <div class="collapse" id="pagesSite" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <x-jet-nav-link href="{{route('site.index')}}" :active="request()->routeIs('site.index')">
-                                            {{ __('Sites') }}
+                                            {{ __('msg.Sites') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('magasin.index')}}" :active="request()->routeIs('magasin.index')">
-                                            {{ __('Magasins') }}
+                                            {{ __('msg.Magasins') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('emplacement.index')}}" :active="request()->routeIs('emplacement.index')">
-                                            {{ __('Emplacements') }}
+                                            {{ __('msg.Emplacements') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('secteur.index')}}" :active="request()->routeIs('secteur.index')">
-                                            {{ __('Secteurs') }}
+                                            {{ __('msg.Secteurs') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('familleSupport.index')}}" :active="request()->routeIs('familleSupport.index')">
-                                            {{ __('Familles de support') }}
+                                            {{ __('msg.Familles de support') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('adresse.index')}}" :active="request()->routeIs('adresse.index')">
-                                            {{ __('Adresses') }}
+                                            {{ __('msg.Adresses') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('contacte.index')}}" :active="request()->routeIs('contacte.index')">
-                                            {{ __('Contactes') }}
+                                            {{ __('msg.Contactes') }}
                                         </x-jet-nav-link>
                                         
                                     </nav>
@@ -299,25 +315,25 @@
                                 <div class="collapse" id="pagesTier" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <x-jet-nav-link href="{{route('tier.index')}}" :active="request()->routeIs('tier.index')">
-                                            {{ __('Liste') }}
+                                            {{ __('msg.Liste') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('fournisseur.index')}}" :active="request()->routeIs('fournisseur.index')">
-                                            {{ __('Fournisseurs') }}
+                                            {{ __('msg.Fournisseurs') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('client.index')}}" :active="request()->routeIs('client.index')">
-                                            {{ __('Clients') }}
+                                            {{ __('msg.Clients') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('transporteur.index')}}" :active="request()->routeIs('transporteur.index')">
-                                            {{ __('Transporteurs') }}
+                                            {{ __('msg.Transporteurs') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('association.index')}}" :active="request()->routeIs('association.index')">
-                                            {{ __('Association Societé/Transporteur') }}
+                                            {{ __('msg.Association Societé/Transporteur') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('planTransport.index')}}" :active="request()->routeIs('planTransport.index')">
-                                            {{ __('Plans des transports') }}
+                                            {{ __('msg.Plans des transports') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('lignePlanTransport.index')}}" :active="request()->routeIs('lignePlanTransport.index')">
-                                            {{ __('Lignes des plans') }}
+                                            {{ __('msg.Lignes des plans') }}
                                         </x-jet-nav-link>
                                     </nav>
                                 </div>
@@ -328,13 +344,13 @@
                                 <div class="collapse" id="pagesCollapseCL" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <x-jet-nav-link href="{{route('conditionnementLogistique.index')}}" :active="request()->routeIs('conditionnementLogistique.index')">
-                                            {{ __('Liste') }}
+                                            {{ __('msg.Liste') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('codeBarre.index')}}" :active="request()->routeIs('codeBarre.index')">
-                                            {{ __('Codes à barre') }}
+                                            {{ __('msg.Codes à barre') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('modelePreparation.index')}}" :active="request()->routeIs('modelePreparation.index')">
-                                            {{ __('Modele de préparation') }}
+                                            {{ __('msg.Modele de préparation') }}
                                         </x-jet-nav-link>
                                     </nav>
                                 </div>
@@ -345,13 +361,13 @@
                                 <div class="collapse" id="pagesCollapsemns" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <x-jet-nav-link href="{{route('modeleSN.index')}}" :active="request()->routeIs('modeleSN.index')">
-                                            {{ __('Liste') }}
+                                            {{ __('msg.Liste') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('ligneModeleSN.index')}}" :active="request()->routeIs('ligneModeleSN.index')">
-                                            {{ __('Lignes de modèle S/N') }}
+                                            {{ __('msg.Lignes de modèle S/N') }}
                                         </x-jet-nav-link>
                                         <x-jet-nav-link href="{{route('familleSN.index')}}" :active="request()->routeIs('familleSN.index')">
-                                            {{ __('Famille de S/N') }}
+                                            {{ __('msg.Famille de S/N') }}
                                         </x-jet-nav-link>
                                     </nav>
                                 </div>
@@ -370,16 +386,16 @@
                         <div class="collapse" id="pagesCollapseT" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <x-jet-nav-link href="{{route('marque.index')}}" :active="request()->routeIs('marque.index')">
-                                    {{ __('Marque') }}
+                                    {{ __('msg.Marque') }}
                                 </x-jet-nav-link>
                                 <x-jet-nav-link href="{{route('categorie.index')}}" :active="request()->routeIs('categorie.index')">
-                                    {{ __('Categorie') }}
+                                    {{ __('msg.Categorie') }}
                                 </x-jet-nav-link>
                                 <x-jet-nav-link href="{{route('prix.index')}}" :active="request()->routeIs('prix.index')">
-                                    {{ __('Prix') }}
+                                    {{ __('msg.Prix') }}
                                 </x-jet-nav-link>
                                 <x-jet-nav-link href="{{route('societe.index')}}" :active="request()->routeIs('societe.index')">
-                                    {{ __('Societe') }}
+                                    {{ __('msg.Societe') }}
                                 </x-jet-nav-link>
                             </nav>
                         </div>

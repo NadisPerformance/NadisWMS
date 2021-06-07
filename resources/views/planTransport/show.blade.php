@@ -7,6 +7,14 @@
         <ol class="breadcrumb mb-4">
           <li class="breadcrumb-item"><a href="{{route('planTransport.index')}}">Plans des transports</a></li>
           <li class="breadcrumb-item active">Détails</li>
+          <select name="etat"  class="form-select" onChange="location = this.options[this.selectedIndex].value;">
+            <option value="#" selected>Les lignes</option>
+            @forelse ($planTransport->lignePlanTransports()->get() as $ligne)
+            <option value="{{ route('lignePlanTransport.show', ['lignePlanTransport' => $ligne->id]) }}">{{$ligne->zone}}</option>
+            @empty
+             <p>Vide!</p>
+            @endforelse
+        </select>
         </ol>
 
     

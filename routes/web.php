@@ -32,6 +32,7 @@ use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\PlanTransportController;
 use App\Http\Controllers\LignePlanTransportController;
 use App\Http\Controllers\AffectationTransporteurController;
+use App\Http\Controllers\HomeController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -50,9 +51,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('lang/{lang}', [HomeController::class,'switchLang'])->name('lang.switch');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',[HomeController::class,'data'])->name('dashboard');
 Route::resource('/article',ArticleController::class);
 Route::resource('/famille',FamilleController::class);
 Route::resource('/familleColisage',FamilleColisageController::class);

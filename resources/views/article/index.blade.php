@@ -31,75 +31,87 @@
     <div class="container">
     <form action="{{ route('actionArticle') }}" method="GET">
     @csrf
-    <button>
-            <a class="btn btn-success btn-icon " href="{{ route('article.create') }}">Ajouter</a>
-        </button>
-        <button type="submit" name="action" value="valide" class="btn btn-primary btn-icon"
-                onClick="return confirm('Valider  !? ')"> Valider</button>
-                <button type="submit" name="action" value="Asupp" class="btn btn-dark btn-icon"
-                onClick="return confirm('A Supprimer  !? ')"> A Supprimer</button>
-        <button type="submit" name="action" value="supp" class="btn btn-danger btn-icon"
-                onClick="return confirm('Supprimer  !? ')"> Supprimer</button>
+    <div class="col-lg">
+        <div class="card mb">
+            <div class="card-header">
+                <button>
+                    <a class="btn btn-success btn-icon " href="{{ route('article.create') }}">Ajouter</a>
+                </button>
+                <button type="submit" name="action" value="valide" class="btn btn-primary btn-icon"
+                        onClick="return confirm('Valider  !? ')"> Valider</button>
+                        <button type="submit" name="action" value="Asupp" class="btn btn-dark btn-icon"
+                        onClick="return confirm('A Supprimer  !? ')"> A Supprimer</button>
+                <button type="submit" name="action" value="supp" class="btn btn-danger btn-icon"
+                        onClick="return confirm('Supprimer  !? ')"> Supprimer</button>
+            </div>
+            <div class="card-body">
+               
+                    <table class="table table-bordered" id="table" >
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" onclick="checkAll(this)"></th>
+                                <th>ID</th>
+                                <th>Code</th>
+                                <th>Etat</th>
+                                <th>Actions</th>
             
             
-        <table class="table table-bordered" id="table" >
-            <thead>
-                <tr>
-                    <th><input type="checkbox" onclick="checkAll(this)"></th>
-                    <th>ID</th>
-                    <th>Code</th>
-                    <th>Etat</th>
-                    <th>Actions</th>
-
-
-                </tr>
-            </thead>
-
-            <tbody>
-                @forelse ($articles as $article)
-                    <tr>
-                        <td><input type="checkbox" name="{{ $article->id }}" value="{{ $article->id }}"></td>
-                        <td>{{ $article->id }}</td>
-                        <td>{{ $article->codeArticle }}</td>
-                        <td>{{ $article->etat }}</td>
-                        <td>
-                            <button title="Détails" >
-                                <a class="btn btn-primary " href="{{ route('article.show', ['article' => $article->id]) }}">
-                                  +
-                                  </a>
-                            </button>
-
-                            <button  class="btn btn-warning ">
-                                
-                                <a title="Modifier article du code {{ $article->codeArticle }}" href="{{ route('article.edit', ['article' => $article->id]) }}">
-                                    <i class="fa fa-edit"></i>Modifier
-                                </a>
-        
-                            </button>
-                            <form style="display: inline;"></form>
-                                    @if ($article->etat == 'A supprimer')
-                                    <form style="display: inline;" action="{{ route('article.destroy', ['article' => $article->id]) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="input" name="submit" class="btn btn-danger" title="Supprimer article du code {{ $article->codeArticle }}"
-                                            onClick="return confirm('Supprimer {{ $article->codeArticle }} !? ')">
-                                            <i class="fa fa-trash"></i>Supprimer
+                            </tr>
+                        </thead>
+            
+                        <tbody>
+                            @forelse ($articles as $article)
+                                <tr>
+                                    <td><input type="checkbox" name="{{ $article->id }}" value="{{ $article->id }}"></td>
+                                    <td>{{ $article->id }}</td>
+                                    <td>{{ $article->codeArticle }}</td>
+                                    <td>{{ $article->etat }}</td>
+                                    <td>
+                                        <button title="Détails" >
+                                            <a class="btn btn-primary " href="{{ route('article.show', ['article' => $article->id]) }}">
+                                              +
+                                              </a>
                                         </button>
-                                    </form>
-                                    @endif
-                                  
-                        </td>
-
-                    </tr>
-                @empty
-                    <p>Vide!</p>
-                @endforelse
-            </tbody>
-
-
-        </table>
-       
+            
+                                        <button  class="btn btn-warning ">
+                                            
+                                            <a title="Modifier article du code {{ $article->codeArticle }}" href="{{ route('article.edit', ['article' => $article->id]) }}">
+                                                <i class="fa fa-edit"></i>Modifier
+                                            </a>
+                    
+                                        </button>
+                                        <form style="display: inline;"></form>
+                                                @if ($article->etat == 'A supprimer')
+                                                <form style="display: inline;" action="{{ route('article.destroy', ['article' => $article->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="input" name="submit" class="btn btn-danger" title="Supprimer article du code {{ $article->codeArticle }}"
+                                                        onClick="return confirm('Supprimer {{ $article->codeArticle }} !? ')">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                @endif
+                                              
+                                    </td>
+            
+                                </tr>
+                            @empty
+                                <p>Vide!</p>
+                            @endforelse
+                        </tbody>
+            
+            
+                    </table>
+                   
+               
+            </div>
+        </div>
+    </div>
+   
+            
+            
+        
 
         </form>
        

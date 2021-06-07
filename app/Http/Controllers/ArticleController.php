@@ -6,6 +6,8 @@ use App\Models\Article;
 use App\Models\Famille;
 use App\Models\ConditionnementLogistique;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ArticleController extends Controller
 {
@@ -108,7 +110,20 @@ class ArticleController extends Controller
     public function create()
     {
         
-        return view('article.create');
+        return view('article.create',[
+            'familles' => DB::table('familles')->select('id', 'name')->get(),
+            'familleColisages' => DB::table('famille_colisages')->select('id', 'name')->get(),
+            'marques' => DB::table('marques')->select('id', 'name')->get(),
+
+            'categories' => DB::table('categories')->select('id', 'value')->get(),
+            'familleQuarantaines' => DB::table('famille_quarantaines')->select('id')->get(),
+            'variants' => DB::table('variants')->select('id')->get(),
+
+            'prixes' => DB::table('prixes')->select('id')->get(),
+            'societes' => DB::table('societes')->select('id')->get(),
+            'modeleStockages' => DB::table('modele_stockages')->select('id')->get(),
+
+        ]);
     }
 
     /**
@@ -146,7 +161,20 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('article.edit',['article'=>$article]);
+        return view('article.edit',['article'=>$article,
+            'familles' => DB::table('familles')->select('id', 'name')->get(),
+            'familleColisages' => DB::table('famille_colisages')->select('id', 'name')->get(),
+            'marques' => DB::table('marques')->select('id', 'name')->get(),
+
+            'categories' => DB::table('categories')->select('id', 'value')->get(),
+            'familleQuarantaines' => DB::table('famille_quarantaines')->select('id')->get(),
+            'variants' => DB::table('variants')->select('id')->get(),
+
+            'prixes' => DB::table('prixes')->select('id')->get(),
+            'societes' => DB::table('societes')->select('id')->get(),
+            'modeleStockages' => DB::table('modele_stockages')->select('id')->get(),
+
+        ]);
     }
 
     /**

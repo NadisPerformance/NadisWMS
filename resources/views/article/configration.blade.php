@@ -104,7 +104,7 @@
                     </div>
                     <div  style="display: none" id="qte">
                         <div class="form-group">
-                            <x-jet-input placeholder="Quantité d'alcool" class="block mt-1 w-full" type="number" name="qteAlcool" id="qteAlcool"
+                            <x-jet-input placeholder="Quantité d'alcool" class="block mt-1 w-full" type="text" name="qteAlcool" id="qteAlcool"
                             value="{{old('qteAlcool',$article->qteAlcool ?? null)}}"  />
                         </div>
                     </div>

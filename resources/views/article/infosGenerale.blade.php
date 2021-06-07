@@ -70,7 +70,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <x-jet-input placeholder="Date Contrat" id="dateContrat"
-                    class="block mt-1 w-full" type="date" name="dateContrat"
+                    class="block mt-1 w-full" type="text" name=""
                     value="{{old('dateContrat',$article->dateContrat ?? null)}}" required  />
             </div>
         </div>
@@ -186,3 +186,12 @@
 
 
 </fieldset>
+
+    <script>
+        $(function(){
+            $('#dateContrat').datetimepicker({
+                format : 'Y-MM-DD h:m:s',
+            })
+            
+        });
+    </script>
