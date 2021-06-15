@@ -24,10 +24,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'name','dateValidite','type','tele',
+        'code','etat','adresse',
         'email',
         'password',
     ];
+    public function groupes(){
+        return $this->hasMany(Groupe::class,' ');  
+    }
+    
 
     /**
      * The attributes that should be hidden for arrays.

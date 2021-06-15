@@ -15,11 +15,80 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('tamplet\css\users.css') }}" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" integrity="sha512-aEe/ZxePawj0+G2R+AaIxgrQuKT68I28qh+wgLrcAJOz3rxCP+TwrK5SPN+E5I+1IQjNtcfvb96HDagwrKRdBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+     
+    <style>
+        body {
+          font-family: "Lato", sans-serif;
+        }
+        label{
+            color: #f7f0f0; 
+        }
+        .sidebar {
+          height: 100%;
+          width: 0;
+          position: fixed;
+          margin-left: 82%;
+          margin-top: 6%;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: rgb(71, 44, 97);
+          overflow-x: hidden;
+          transition: 0.5s;
+          padding-top: 60px;
+          
+        }
+        
+        .sidebar a {
+          padding: 8px 8px 8px 32px;
+          text-decoration: none;
+          font-size: 25px;
+          color: #f7f0f0;
+          display: block;
+          transition: 0.3s;
+        }
+        
+        .sidebar a:hover {
+          color: #f1f1f1;
+        }
+        
+        .sidebar .closebtn {
+          position: absolute;
+          top: 0;
+          font-size: 36px;
+          margin-left: 0px;
+        }
+        
+        .openbtn {
+          font-size: 20px;
+          cursor: pointer;
+          background-color: #111;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+        }
+        
+        .openbtn:hover {
+          background-color: #444;
+        }
+        
+        #main {
+          transition: margin-left .5s;
+          padding: 16px;
+        }
+        
+        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+          .sidebar {padding-top: 15px;}
+          .sidebar a {font-size: 18px;}
+        }
+        </style>
     @livewireStyles
 
     <!-- Scripts -->
@@ -116,6 +185,65 @@
     @stack('modals')
 
     @livewireScripts
+    <script>
+                if ($('#full-view').length) {
+        
+        var requestFullscreen = function(ele) {
+            if (ele.requestFullscreen) {
+                ele.requestFullscreen();
+            } else if (ele.webkitRequestFullscreen) {
+                ele.webkitRequestFullscreen();
+            } else if (ele.mozRequestFullScreen) {
+                ele.mozRequestFullScreen();
+            } else if (ele.msRequestFullscreen) {
+                ele.msRequestFullscreen();
+            } else {
+                console.log('Fullscreen API is not supported.');
+            }
+        };
+        
+        var exitFullscreen = function() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            } else {
+                console.log('Fullscreen API is not supported.');
+            }
+        };
+        
+        var fsDocButton = document.getElementById('full-view');
+        var fsExitDocButton = document.getElementById('full-view');
+        
+        fsDocButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            requestFullscreen(document.documentElement);
+            $('body').addClass('expanded');
+        });
+        
+        fsExitDocButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            exitFullscreen();
+            $('body').removeClass('expanded');
+        });
+        }
+    </script>
+    <script>
+        function openNav() {
+          document.getElementById("mySidebar").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidebar").style.width = "0";
+          document.getElementById("main").style.marginLeft= "0";
+        }
+        </script>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ asset('tamplet/js/scripts.js') }}"></script>

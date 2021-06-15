@@ -11,7 +11,7 @@ return [
         'flag-icon' => 'fr'
     ],
     'ar' => [
-        'display' => 'Arabe',
+        'display' => 'العربية',
         'flag-icon' => 'ar'
     ],
 ];

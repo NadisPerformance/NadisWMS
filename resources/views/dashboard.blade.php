@@ -10,6 +10,11 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">{{ __('msg.Dashboard') }}</li>
                         </ol> 
+        @if (Auth::user()->type=="Utilisateur")
+           Vide
+        @else
+            
+                        
         <div class="row">
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-primary text-white mb-4">
@@ -143,7 +148,7 @@
             </div>
         </div>
         
-         
+        @endif
 </x-app-layout>
 <script>
 // Set new default font family and font color to mimic Bootstrap's default styling

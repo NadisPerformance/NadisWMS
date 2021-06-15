@@ -2,6 +2,8 @@
 return[
     
         "30 Days"=>"30 jours",
+        "Users"=>"Utilisateurs",
+        "Groupe"=>"Groupes",
         "60 Days"=>"60 jours",
         "État Créé"=>"État Créé",
         "État Invalide"=>"État Invalide",

@@ -1,6 +1,8 @@
 <?php
 return[
         "30 Days"=>"30 Days",
+        "Users"=>"Users",
+        "Groupe"=>"Groups",
         "Dashboard"=>"Dashboard",
         "60 Days"=>"60 Days",
         "year"=>"Year",

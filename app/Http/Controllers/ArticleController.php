@@ -7,6 +7,7 @@ use App\Models\Famille;
 use App\Models\ConditionnementLogistique;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 
 class ArticleController extends Controller
@@ -66,7 +67,7 @@ class ArticleController extends Controller
                                 }
                             }
                             if($v!=0){
-                                $article->etat="Valider";
+                                $article->etat="Valide";
                                     $article->save();
                                     $compt++;
                             }else{
@@ -79,7 +80,7 @@ class ArticleController extends Controller
                         $msge=$msge. $article->codeArticle .", ";  
                         }
                 }
-              }
+            }
               if($msge!=""){
               $request->session()->flash('msge', "Vous pouvez pas valider les articles en l'état A supprimer,Ont les codes [$msge] ");
               }
@@ -95,6 +96,8 @@ class ArticleController extends Controller
       
               return back()->withInput();
     }
+
+    
     
     public function index()
     {

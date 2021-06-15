@@ -6,35 +6,18 @@
                 <!-- Logo -->
                 <div style="margin-top: 2%">
                     <button  class="btn btn-link btn-sm order-1 order-lg-0 bg-dark" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-                    </div>
-                <div style="margin-left: 5%; " class="flex-shrink-0 flex items-center">
+                </div>
+                <div style="margin-left: 5%; width: 15%" class="flex-shrink-0 flex items-center">
                     <x-jet-nav-link  href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="navbar-brand">
-                        <!--<img  src="{{asset('tamplet\assets\img\logo.jpg')}}" alt=""> -->
-                        <h1 style="size: 100ch">maGistor® (WMS)</h1>
+                        <!--<h1 style="size: 100ch">maGistor® (WMS)</h1> -->
+                        <img   src="{{asset('tamplet\assets\img\logo.png')}}" alt=""> 
                     </x-jet-nav-link>
                 </div>
                
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{route('test.index')}}" :active="request()->routeIs('test.index')">
-                        {{ __('msg.Test') }}
-                    </x-jet-nav-link>
-                </div>
-                <div style="background-color: white" class="inline-flex rounded-md">
-                  
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span> {{ Config::get('languages')[App::getLocale()]['display'] }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        @foreach (Config::get('languages') as $lang => $language)
-                            @if ($lang != App::getLocale())
-                                    <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"><span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span> {{$language['display']}}</a>
-                            @endif
-                        @endforeach
-                        </div>
-                  
-                </div>
+    
+                
             </div>
            
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -42,6 +25,7 @@
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
                         <x-jet-dropdown align="right" width="60">
+                            
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
@@ -87,7 +71,55 @@
                         </x-jet-dropdown>
                     </div>
                 @endif
-
+               
+               
+                <div class="ml-3 relative bg-info" title="{{__('Plein écran')}}" id="full-view">
+                    <i class="fa fa-crosshairs"></i>
+                </div>
+                
+                <div  id="main" class="ml-3 relative bg-info" title="{{__('Setting')}}">
+                    <button onclick="openNav()">
+                       <i class="fa fa-cog"></i>
+                    </button>
+                </div>
+                
+                <div id="mySidebar" class="sidebar">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                    <div class="form-check form-switch">
+                        <label style="margin-left: 4%" class="form-check-label" for="s1">Setting 1</label>
+                        <input style="margin-left: 40%"  class="form-check-input" type="checkbox" id="s1">
+                    </div><br>
+                    <div class="form-check form-switch">
+                        <label style="margin-left: 4%" class="form-check-label" for="s2">Setting 2</label>
+                        <input style="margin-left: 40%"  class="form-check-input" type="checkbox" id="s2">
+                    </div><br>
+                    <div class="form-check form-switch">
+                        <label style="margin-left: 4%" class="form-check-label" for="s3">Setting 3</label>
+                        <input style="margin-left: 40%" class="form-check-input" type="checkbox" id="s3">
+                    </div><br>
+                    <div class="form-check form-switch">
+                        <label style="margin-left: 4%" class="form-check-label" for="s4">Setting 4</label>
+                        <input style="margin-left: 40%" class="form-check-input" type="checkbox" id="s4">
+                    </div><br>
+                    <div class="form-check form-switch">
+                        <label style="margin-left: 4%" class="form-check-label" for="s5">Setting 5</label>
+                        <input style="margin-left: 40%" class="form-check-input" type="checkbox" id="s5">
+                    </div>
+                </div>
+                <div  class="ml-3 relative bg-info">
+                  
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span> {{ Config::get('languages')[App::getLocale()]['display'] }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        @foreach (Config::get('languages') as $lang => $language)
+                            @if ($lang != App::getLocale())
+                                    <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"><span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span> {{$language['display']}}</a>
+                            @endif
+                        @endforeach
+                        </div>
+                  
+                </div>
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
                     <x-jet-dropdown align="right" width="48">
@@ -235,13 +267,21 @@
     </div>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-info bg-info" id="sidenavAccordion">
+            <nav class="sb-sidenav accordion sb-sidenav-info bg-secondary text-white" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">CŒUR</div>
                         <a class="nav-link" href="{{ route('dashboard') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             {{ __('msg.Dashboard')}}
+                        </a>
+                        <a class="nav-link" href="{{ route('user.index') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-alt"></i></div>
+                            {{ __('msg.Users')}}
+                        </a>
+                        <a class="nav-link" href="{{ route('groupe.index') }}">
+                            <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
+                            {{ __('msg.Groupe')}}
                         </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         
@@ -256,8 +296,8 @@
                                     Articles
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
+                                <div class="collapse " id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested " >
                                         <x-jet-nav-link href="{{route('article.index')}}" :active="request()->routeIs('article.index')">
                                             {{ __('msg.Liste') }}
                                         </x-jet-nav-link>

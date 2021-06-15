@@ -14,9 +14,46 @@
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
+            <div>
+                <x-jet-label for="code" value="{{ __('Code') }}" />
+                <x-jet-input id="code" class="block mt-1 w-full" type="number" name="code" :value="old('code')" required autofocus autocomplete="code" />
+            </div>
+
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="etat" value="{{ __('Etat') }}" />
+                <select name="etat"  class="form-select" aria-label="Default select example">
+                    <option value="Actif">Actif</option>
+                    <option value="Inactif">Inactif</option>
+                </select>
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="type" value="{{ __('Type') }}" />
+                <select name="type"  class="form-select" aria-label="Default select example">
+                    <option value="Editeur">Editeur</option>
+                    <option value="Intégrateur">Intégrateur</option>
+                    <option value="Utilisateur">Utilisateur</option>
+                </select>
+            </div>
+
+            <div>
+                <x-jet-label for="tele" value="{{ __('Télé') }}" />
+                <x-jet-input id="tele" placeholder="0666666666" class="block mt-1 w-full" type="number" name="tele" :value="old('tele')" required autofocus autocomplete="tele" />
+            </div>
+
+            <div>
+                <x-jet-label for="adresse" value="{{ __('Adresse') }}" />
+                <x-jet-input id="adresse"  class="block mt-1 w-full" type="text" name="adresse" :value="old('adresse')" required autofocus autocomplete="adresse" />
+            </div>
+
+            <div>
+                <x-jet-label for="dateValidite" value="{{ __('Date de validité') }}" />
+                <x-jet-input id="dateValidite"  class="block mt-1 w-full" type="date" name="dateValidite" :value="old('dateValidite')" required autofocus autocomplete="dateValidite" />
             </div>
 
             <div class="mt-4">
