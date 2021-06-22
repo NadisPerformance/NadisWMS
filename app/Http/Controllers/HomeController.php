@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Article;
 use PDF;
 
 class HomeController extends Controller
@@ -49,5 +50,14 @@ class HomeController extends Controller
             'update' => DB::table('articles')->max(DB::raw('(updated_at)')),
             ]); 
     }
+    public function stock()
+    {
+     
+        return view('stock', [
+            'articles' => article::all(),
+            'ids' => DB::table('articles')->get('id'),
+            ]); 
+    }
+    
     
 }

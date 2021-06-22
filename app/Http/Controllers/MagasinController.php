@@ -6,6 +6,7 @@ use App\Models\Magasin;
 use App\Models\Site;
 use App\Models\Emplacement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MagasinController extends Controller
 {
@@ -75,7 +76,9 @@ class MagasinController extends Controller
      */
     public function create()
     {
-        return view('magasin.create');  
+        return view('magasin.create', [
+            'sites' => DB::table('sites')->select('id', 'Libelle')->get()
+            ]);   
     }
 
     /**
@@ -113,7 +116,9 @@ class MagasinController extends Controller
     public function edit(magasin $magasin)
     {
         
-        return view('magasin.edit',['magasin'=>$magasin]);
+        return view('magasin.edit',['magasin'=>$magasin,
+        'sites' => DB::table('sites')->select('id', 'Libelle')->get()
+        ]);  
     }
 
     /**

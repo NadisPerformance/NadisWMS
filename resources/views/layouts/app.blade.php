@@ -26,9 +26,7 @@
         body {
           font-family: "Lato", sans-serif;
         }
-        label{
-            color: #f7f0f0; 
-        }
+        
         .sidebar {
           height: 100%;
           width: 0;

@@ -1,5 +1,6 @@
 <?php
 return[
+        "Gestion de stocke"=>"Stock management",
         "30 Days"=>"30 Days",
         "Users"=>"Users",
         "Groupe"=>"Groups",
@@ -17,6 +18,7 @@ return[
         "mis"=>"Updated at :",
         "Filtrer"=>"Filter",
         "Voir les détails"=>"See details",
+        "Système de gestion des entrepôts (WMS)"=>"Warehouse Management System (WMS)",
         "90 Days"=>"90 Days",
         ":amount Total"=>":amount Total",
         ":days day trial"=>":days day trial",

@@ -9,7 +9,7 @@ class Emplacement extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'idMagasin','idSecteur','idFamilleSupport','code',
+        'idMagasin','idArticle','idSecteur','idFamilleSupport','code',
         'Libelle','LibelleClient','type','capacite',
         'estPicking','usage','etat','hauteur',
         'largeur','profondeur','poids','volume',
@@ -22,5 +22,8 @@ class Emplacement extends Model
     }
     public function familleSupports(){
         return $this->belongsTo(FamilleSupport::class,'idFamilleSupport');  
+    }
+    public function article(){
+        return $this->belongsTo(Article::class,'idArticle');  
     }
 }

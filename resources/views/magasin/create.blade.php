@@ -109,8 +109,15 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <x-jet-input placeholder="Site?" id="idSite" class="block mt-1 w-full" type="number"
-                                        name="idSite" value="{{old('idSite')}}" required  />
+                                    <x-jet-label for="idSite" value="{{ __('Site') }}" />
+                                    <select name="idSite"  class="form-select"
+                                        aria-label="Default select example">
+                                        @forelse ($sites as $site)
+                                        <option value="{{$site->id}}">{{$site->Libelle}}</option> 
+                                        @empty
+                                          vide  
+                                        @endforelse                                      
+                                    </select>
                                 </div>
                             </div>
                         </div>

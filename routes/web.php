@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth'], function() {
        
    });
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin' ], function() {
+        Route::get('stock', [HomeController::class,'stock'])->name('stock');
         Route::resource('/article',ArticleController::class);
         Route::resource('/user',UserController::class);
         Route::resource('/groupe',GroupeController::class);

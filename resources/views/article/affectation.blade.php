@@ -82,7 +82,7 @@
                         <select name="idCategorie"  class="form-select"
                             aria-label="Default select example">
                             @forelse ($categories as $categorie)
-                            <option value="{{$famille->id}}"
+                            <option value="{{$categorie->id}}"
                                 {{(old('idCategorie', $article->idCategorie ??null) == $categorie->id) ? 'selected':''}}>
                                 {{$categorie->value}}
                             </option> 
@@ -98,7 +98,7 @@
                         <select name="idModeleStockage"  class="form-select"
                             aria-label="Default select example">
                             @forelse ($modeleStockages as $model)
-                            <option value="{{$famille->id}}"
+                            <option value="{{$model->id}}"
                                 {{(old('idModeleStockage', $article->idModeleStockage ??null) == $model->id) ? 'selected':''}}>
                                 {{$model->id}}
                             </option> 

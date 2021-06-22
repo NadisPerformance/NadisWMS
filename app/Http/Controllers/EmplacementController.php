@@ -50,6 +50,7 @@ class EmplacementController extends Controller
     public function create(Request $request)
     {
         return view('emplacement.create', [
+        'articles' => DB::table('articles')->select('id', 'codeArticle')->get(),
         'magasins' => DB::table('magasins')->select('id', 'code')->get(),
         'secteurs' => DB::table('secteurs')->select('id', 'code')->get(),
         'familleSupports' => DB::table('famille_supports')->select('id', 'code')->get(),
@@ -93,6 +94,7 @@ class EmplacementController extends Controller
     {
         
         return view('emplacement.edit',['emplacement'=>$emplacement,
+        'articles' => DB::table('articles')->select('id', 'codeArticle')->get(),
         'magasins' => DB::table('magasins')->select('id', 'code')->get(),
         'secteurs' => DB::table('secteurs')->select('id', 'code')->get(),
         'familleSupports' => DB::table('famille_supports')->select('id', 'code')->get()

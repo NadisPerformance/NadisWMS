@@ -15,6 +15,8 @@ class CreateEmplacementsTable extends Migration
     {
         Schema::create('emplacements', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('idArticle')->unsigned();
+            $table->foreign('idArticle')->references('id')->on('articles')->onDelete('cascade');
             $table->bigInteger('idMagasin')->unsigned();
             $table->foreign('idMagasin')->references('id')->on('magasins')->onDelete('cascade');
             $table->bigInteger('idSecteur')->unsigned();

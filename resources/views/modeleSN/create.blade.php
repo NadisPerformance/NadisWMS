@@ -27,7 +27,7 @@
                                     <select name="idArticle"  class="form-select"
                                         aria-label="Default select example">
                                         @forelse ($articles as $article)
-                                        <option value="{{$article->id}}">{{$article->code}}</option> 
+                                        <option value="{{$article->id}}">{{$article->codeArticle}}</option> 
                                         @empty
                                           <option value="">vide</option>  
                                         @endforelse                                    

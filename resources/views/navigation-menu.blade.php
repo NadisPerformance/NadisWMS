@@ -98,7 +98,8 @@
                         <input style="margin-left: 40%" class="form-check-input" type="checkbox" id="s3">
                     </div><br>
                     <div class="form-check form-switch">
-                        <label style="margin-left: 4%" class="form-check-label" for="s4">Setting 4</label>
+                        <label style="margin-leSSCC
+                        ft: 4%" class="form-check-label" for="s4">Setting 4</label>
                         <input style="margin-left: 40%" class="form-check-input" type="checkbox" id="s4">
                     </div><br>
                     <div class="form-check form-switch">
@@ -283,17 +284,21 @@
                             <div class="sb-nav-link-icon"><i class="fa fa-users"></i></div>
                             {{ __('msg.Groupe')}}
                         </a>
+                        <a class="nav-link" href="{{ route('stock') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                            {{ __('msg.Gestion de stocke')}}
+                        </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
+                            {{ __('msg.Écrans')}}
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    Articles
+                                    {{ __('msg.Articles')}}
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
                                 <div class="collapse " id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
@@ -319,7 +324,7 @@
                                     </nav>
                                 </div>
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesSite" aria-expanded="false" aria-controls="pagesSite">
-                                    CARTOGRAPHIE
+                                    {{ __('msg.Cartographie')}}
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
                                 <div class="collapse" id="pagesSite" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
@@ -349,7 +354,7 @@
                                     </nav>
                                 </div>
                                 <a class="nav-link collapsed" href="{{route('tier.index')}}" data-toggle="collapse" data-target="#pagesTier" aria-expanded="false" aria-controls="pagesTier">
-                                    Tiers
+                                    {{ __('msg.Tiers')}}
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
                                 <div class="collapse" id="pagesTier" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
@@ -378,7 +383,7 @@
                                     </nav>
                                 </div>
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseCL" aria-expanded="false" aria-controls="pagesCollapseCL">
-                                    Conditionnement Logistique
+                                    {{ __('msg.Conditionnement Logistique')}}
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
                                 <div class="collapse" id="pagesCollapseCL" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
@@ -395,7 +400,7 @@
                                     </nav>
                                 </div>
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapsemns" aria-expanded="false" aria-controls="pagesCollapsemns">
-                                    modèles de S/N
+                                    {{ __('msg.Modèles de S/N')}}
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
                                 <div class="collapse" id="pagesCollapsemns" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">

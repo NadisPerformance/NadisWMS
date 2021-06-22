@@ -1,6 +1,6 @@
 <?php
 return[
-    
+        "Gestion de stocke"=>"إدارة المخزون",
         "30 Days"=>"30 يوم",
         "Users"=>"المستخدمين",
         "Groupe"=>"المجموعات",
@@ -17,6 +17,7 @@ return[
         "Filtrer"=>"تحديد",
         "year"=>"السنة",
         "month"=>"الشهر",
+        "Système de gestion des entrepôts (WMS)"=>"(WMS) نظام إدارة المستودعات",
         "60 Days"=>"60 يوم",
         "90 Days"=>"90 يوم",
         ":amount Total"=>":amount إجمالا",

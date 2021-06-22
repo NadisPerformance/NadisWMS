@@ -1,7 +1,11 @@
 <x-guest-layout>
     <x-jet-authentication-card>
+        
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <center>
+                <b><i><h1 class="font-weight-bold" style="font-size: 200%;width: 100%;" >{{__('msg.Système de gestion des entrepôts (WMS)')}}</h1></i></b> 
+            </center>
+           <br> <img style="margin-left: 41%; width: 18%"  src="{{asset('tamplet\assets\img\logo.png')}}" alt=""> 
         </x-slot>
         <div style="background-color: white;margin-left: 80%" class="inline-flex rounded-md">
                   

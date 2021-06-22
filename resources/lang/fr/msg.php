@@ -1,6 +1,6 @@
 <?php
 return[
-    
+        "Gestion de stocke"=>"Gestion de stocke",
         "30 Days"=>"30 jours",
         "Users"=>"Utilisateurs",
         "Groupe"=>"Groupes",
@@ -15,6 +15,7 @@ return[
         "gb"=>"Graphique à barres des articles (par mois)",
         "mis"=>"Mis à jour le :",
         "Filtrer"=>"Filtrer",
+        "Système de gestion des entrepôts (WMS)"=>"Système de gestion des entrepôts (WMS)",
         "90 Days"=>"90 jours",
         ":amount Total"=>":amount Total",
         ":days day trial"=>":days jours d'essai",

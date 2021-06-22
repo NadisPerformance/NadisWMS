@@ -174,8 +174,24 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md">
-                                <div class="form-check form-switch">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <x-jet-label for="idArticle" value="{{ __('Article') }}" />
+                                    <select name="idArticle"  class="form-select"
+                                        aria-label="Default select example">
+                                        @forelse ($articles as $article)
+                                        <option value="{{$article->id}}"
+                                            {{(old('idArticle',$emplacement->idArticle)==$article->id)? 'selected':''}}>
+                                            {{$article->codeArticle}}
+                                        </option> 
+                                        @empty
+                                          vide  
+                                        @endforelse                                      
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-switch" style="margin-left:20%;margin-top: 10%">
                                     <input value=1 @if(old('estPicking',$emplacement->estPicking ?? null)==1) checked @endif 
                                     class="form-check-input" name="estPicking" type="checkbox" 
                                     id="estPicking">
